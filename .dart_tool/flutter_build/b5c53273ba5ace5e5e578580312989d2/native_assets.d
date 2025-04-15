@@ -1,0 +1,1 @@
+ /Users/sevakbaghryan/Downloads/sparke_kaleo/.dart_tool/flutter_build/b5c53273ba5ace5e5e578580312989d2/native_assets.yaml: 
