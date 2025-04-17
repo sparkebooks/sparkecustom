@@ -1,7 +1,12 @@
-
-
+include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude:
-    - lib/custom_code/**
-    - lib/flutter_flow/custom_functions.dart
+  errors:
+    avoid_print: ignore
+    invalid_annotation_target: ignore
+    invalid_visibility_annotation: ignore
+    prefer_const_constructors: ignore
+    unnecessary_string_escapes: ignore
+    unused_import: ignore
+
+
