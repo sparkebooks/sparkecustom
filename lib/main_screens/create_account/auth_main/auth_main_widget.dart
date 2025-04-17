@@ -55,7 +55,6 @@ class _AuthMainWidgetState extends State<AuthMainWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
-
     _model.emailAddressCreateTextController ??=
         TextEditingController(text: _model.email);
     _model.emailAddressCreateFocusNode ??= FocusNode();

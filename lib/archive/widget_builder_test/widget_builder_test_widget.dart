@@ -46,7 +46,7 @@ class _WidgetBuilderTestWidgetState extends State<WidgetBuilderTestWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Builder(builder: (_) {
-          return widget.child != null ? widget.child!() : SizedBox.shrink();
+          return widget.child!();
         }),
       ],
     );

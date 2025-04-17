@@ -1,14 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'loading_book_model.dart';
+
 export 'loading_book_model.dart';
 
-/// This component is for loading state of the library.
+/// This component is for the loading state of the library.
 class LoadingBookWidget extends StatefulWidget {
-  const LoadingBookWidget({super.key});
+  const LoadingBookWidget({Key? key}) : super(key: key);
 
   @override
   State<LoadingBookWidget> createState() => _LoadingBookWidgetState();
@@ -18,52 +20,47 @@ class _LoadingBookWidgetState extends State<LoadingBookWidget>
     with TickerProviderStateMixin {
   late LoadingBookModel _model;
 
-  final animationsMap = <String, AnimationInfo>{};
-
-  @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
+  final Map<String, AnimationInfo> animationsMap = {};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => LoadingBookModel());
 
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        loop: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            color: Color(0x80FFFFFF),
-            angle: 0.524,
-          ),
-        ],
-      ),
-    });
+    // Configure the page load shimmer animation.
+    animationsMap['containerOnPageLoadAnimation'] = AnimationInfo(
+      loop: true,
+      trigger: AnimationTrigger.onPageLoad,
+      effectsBuilder: () => [
+        ShimmerEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          color: const Color(0x80FFFFFF),
+          angle: 0.524,
+        ),
+      ],
+    );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+    // Trigger a rebuild after the first frame if necessary.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
     _model.maybeDispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(),
+      decoration: const BoxDecoration(),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         children: [
+          // Left side: Book image container.
           Opacity(
             opacity: 0.5,
             child: Container(
@@ -75,10 +72,11 @@ class _LoadingBookWidgetState extends State<LoadingBookWidget>
               ),
               child: Stack(
                 children: [
-                  Opacity(
-                    opacity: 0.2,
-                    child: Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                  // Centered placeholder icon.
+                  Align(
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: 0.2,
                       child: Icon(
                         FFIcons.kimage03,
                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -86,19 +84,18 @@ class _LoadingBookWidgetState extends State<LoadingBookWidget>
                       ),
                     ),
                   ),
-                  Opacity(
-                    opacity: 0.2,
-                    child: Align(
-                      alignment: AlignmentDirectional(1.0, -1.0),
+                  // Top-right accent box.
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Opacity(
+                      opacity: 0.2,
                       child: Container(
                         width: 44.0,
                         height: 24.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).secondaryText,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(8.0),
-                            bottomRight: Radius.circular(0.0),
-                            topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(8.0),
                           ),
                         ),
@@ -109,51 +106,55 @@ class _LoadingBookWidgetState extends State<LoadingBookWidget>
               ),
             ),
           ),
-          Opacity(
-            opacity: 0.5,
+          const SizedBox(width: 16.0),
+          // Right side: Expanded column with loading text placeholders.
+          Expanded(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // First line placeholder.
                 Container(
-                  width: 135.0,
                   height: 24.0,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).alternate,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: Container(
-                    width: 96.0,
-                    height: 24.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 4.0),
+                // Second line placeholder.
                 Container(
-                  width: 235.0,
-                  height: 20.0,
+                  height: 24.0,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).alternate,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
+                const SizedBox(height: 4.0),
+                // Third line placeholder.
                 Container(
-                  width: 202.0,
                   height: 20.0,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).alternate,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-              ].divide(SizedBox(height: 4.0)),
+                const SizedBox(height: 4.0),
+                // Fourth line placeholder.
+                Container(
+                  height: 20.0,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).alternate,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ],
             ),
           ),
-        ].divide(SizedBox(width: 16.0)),
+        ],
       ),
     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);
   }

@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-
 import '/flutter_flow/flutter_flow_util.dart';
 
 class UserBooksDataStruct extends FFFirebaseStruct {
@@ -352,6 +351,42 @@ class UserBooksDataStruct extends FFFirebaseStruct {
         bookProgress == other.bookProgress &&
         currentChapter == other.currentChapter &&
         isPaymentRequired == other.isPaymentRequired;
+  }
+
+  UserBooksDataStruct copyWith({
+    int? userbookId,
+    int? userbookPageNumber,
+    int? indexInLocal,
+    int? bookTotalPages,
+    bool? readingMode,
+    int? chaptersUnlocked,
+    String? bookName,
+    String? bookImage,
+    int? bookId,
+    DateTime? updatedAt,
+    bool? nextChapterFirst,
+    double? bookProgress,
+    int? currentChapter,
+    bool? isPaymentRequired,
+    FirestoreUtilData? firestoreUtilData,
+  }) {
+    return UserBooksDataStruct(
+      userbookId: userbookId ?? _userbookId,
+      userbookPageNumber: userbookPageNumber ?? _userbookPageNumber,
+      indexInLocal: indexInLocal ?? _indexInLocal,
+      bookTotalPages: bookTotalPages ?? _bookTotalPages,
+      readingMode: readingMode ?? _readingMode,
+      chaptersUnlocked: chaptersUnlocked ?? _chaptersUnlocked,
+      bookName: bookName ?? _bookName,
+      bookImage: bookImage ?? _bookImage,
+      bookId: bookId ?? _bookId,
+      updatedAt: updatedAt ?? _updatedAt,
+      nextChapterFirst: nextChapterFirst ?? _nextChapterFirst,
+      bookProgress: bookProgress ?? _bookProgress,
+      currentChapter: currentChapter ?? _currentChapter,
+      isPaymentRequired: isPaymentRequired ?? _isPaymentRequired,
+      firestoreUtilData: firestoreUtilData ?? this.firestoreUtilData,
+    );
   }
 
   @override

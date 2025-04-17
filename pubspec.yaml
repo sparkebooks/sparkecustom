@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.3+1
+version: 1.0.12+73
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -61,8 +61,6 @@ dependencies:
   firebase_core: 3.8.0
   firebase_core_platform_interface: 5.3.0
   firebase_core_web: 2.18.1
-  firebase_dynamic_links: 6.0.10
-  firebase_dynamic_links_platform_interface: 0.2.6+46
   firebase_messaging: 15.1.5
   firebase_messaging_platform_interface: 4.5.48
   firebase_messaging_web: 3.9.4
@@ -123,7 +121,7 @@ dependencies:
   plugin_platform_interface: 2.1.8
   postgrest: 2.1.4
   provider: 6.1.2
-  purchases_flutter: 8.7.0
+  purchases_flutter: 8.7.2
   realtime_client: 2.2.1
   rxdart: 0.27.7
   shared_preferences: 2.3.2
@@ -168,6 +166,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  flutter_branch_sdk: ^8.4.1
+  flutter_meta_sdk: ^1.0.5
+  flutter_smartlook: ^4.1.25
 
 dependency_overrides:
   http: 1.2.2
@@ -183,22 +184,19 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
   web:
     generate: true
-  image_path: 'assets/images/app_launcher_icon.jpg'
-
+  image_path: "assets/images/app_launcher_icon.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -219,7 +217,6 @@ flutter:
     - family: FfUntitledui
       fonts:
         - asset: assets/fonts/ff-untitledui.ttf
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -246,4 +243,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-

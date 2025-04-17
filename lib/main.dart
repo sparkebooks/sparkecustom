@@ -1,25 +1,28 @@
-import '/custom_code/actions/index.dart' as actions;
-import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_branch_sdk/flutter_branch_sdk.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_smartlook/flutter_smartlook.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'auth/firebase_auth/firebase_user_provider.dart';
-import 'auth/firebase_auth/auth_util.dart';
+import 'package:provider/provider.dart';
+import 'package:sparke_kaleo/branch_handler.dart';
 
-import 'backend/push_notifications/push_notifications_util.dart';
 import '/backend/supabase/supabase.dart';
-import 'backend/firebase/firebase_config.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/flutter_flow_theme.dart';
+import 'auth/firebase_auth/auth_util.dart';
+import 'auth/firebase_auth/firebase_user_provider.dart';
+import 'backend/firebase/firebase_config.dart';
+import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
-import 'index.dart';
 import 'flutter_flow/revenue_cat_util.dart' as revenue_cat;
-
-import '/backend/firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await FlutterBranchSdk.init();
+
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
 
@@ -44,7 +47,14 @@ void main() async {
 
   // Start final custom actions code
   await actions.requestTrackingPermission();
+
   // End final custom actions code
+
+  final Smartlook smartlook = Smartlook.instance;
+
+  smartlook.start();
+  smartlook.preferences
+      .setProjectKey('44224deda9b0ac7989939e37f05242ecf88a0fb5');
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -126,85 +136,88 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Sparke-Kaleo',
-      scrollBehavior: MyAppScrollBehavior(),
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale('en', '')],
-      theme: ThemeData(
-        brightness: Brightness.light,
-        scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(false),
-          interactive: true,
-          thickness: WidgetStateProperty.all(8.0),
-          radius: Radius.circular(4.0),
-          trackColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.hovered)) {
-              return Color(4286808963);
-            }
-            return Color(4289440683);
-          }),
-          trackBorderColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.hovered)) {
-              return Color(4288059030);
-            }
-            return Color(4287598479);
-          }),
-          thumbColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.dragged)) {
-              return Color(2988187181);
-            }
-            if (states.contains(WidgetState.hovered)) {
-              return Color(2988187181);
-            }
-            return Color(4292928487);
-          }),
+    final router = _router;
+
+    return BranchLinksHandler(
+      router: router,
+      child: SmartlookRecordingWidget(
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Sparke-Kaleo',
+          scrollBehavior: MyAppScrollBehavior(),
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en', '')],
+          theme: ThemeData(
+            brightness: Brightness.light,
+            scrollbarTheme: ScrollbarThemeData(
+              thumbVisibility: WidgetStateProperty.all(true),
+              trackVisibility: WidgetStateProperty.all(false),
+              interactive: true,
+              thickness: WidgetStateProperty.all(8.0),
+              radius: Radius.circular(4.0),
+              trackColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.hovered)) {
+                  return Color(4286808963);
+                }
+                return Color(4289440683);
+              }),
+              trackBorderColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.hovered)) {
+                  return Color(4288059030);
+                }
+                return Color(4287598479);
+              }),
+              thumbColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.dragged)) {
+                  return Color(2988187181);
+                }
+                if (states.contains(WidgetState.hovered)) {
+                  return Color(2988187181);
+                }
+                return Color(4292928487);
+              }),
+            ),
+            useMaterial3: false,
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            scrollbarTheme: ScrollbarThemeData(
+              thumbVisibility: WidgetStateProperty.all(true),
+              trackVisibility: WidgetStateProperty.all(false),
+              interactive: true,
+              thickness: WidgetStateProperty.all(8.0),
+              radius: Radius.circular(4.0),
+              trackColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.hovered)) {
+                  return Color(4286808963);
+                }
+                return Color(4289440683);
+              }),
+              trackBorderColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.hovered)) {
+                  return Color(4288059030);
+                }
+                return Color(4287598479);
+              }),
+              thumbColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.dragged)) {
+                  return Color(2988187181);
+                }
+                if (states.contains(WidgetState.hovered)) {
+                  return Color(2988187181);
+                }
+                return Color(4281612112);
+              }),
+            ),
+            useMaterial3: false,
+          ),
+          themeMode: _themeMode,
+          routerConfig: _router,
         ),
-        useMaterial3: false,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(false),
-          interactive: true,
-          thickness: WidgetStateProperty.all(8.0),
-          radius: Radius.circular(4.0),
-          trackColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.hovered)) {
-              return Color(4286808963);
-            }
-            return Color(4289440683);
-          }),
-          trackBorderColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.hovered)) {
-              return Color(4288059030);
-            }
-            return Color(4287598479);
-          }),
-          thumbColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.dragged)) {
-              return Color(2988187181);
-            }
-            if (states.contains(WidgetState.hovered)) {
-              return Color(2988187181);
-            }
-            return Color(4281612112);
-          }),
-        ),
-        useMaterial3: false,
-      ),
-      themeMode: _themeMode,
-      routerConfig: _router,
-      builder: (_, child) => DynamicLinksHandler(
-        router: _router,
-        child: child!,
       ),
     );
   }

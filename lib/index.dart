@@ -102,7 +102,7 @@ export '/archive/book_main_archive/book_main_archive_widget.dart'
     show BookMainArchiveWidget;
 export '/main_screens/create_account/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
-export '/archive/main_notifications_list/main_notifications_list_widget.dart'
+export '/main_screens/main_notifications_list/main_notifications_list_widget.dart'
     show MainNotificationsListWidget;
 export '/main_screens/settings_pages/profile_delete_account/profile_delete_account_widget.dart'
     show ProfileDeleteAccountWidget;
@@ -114,5 +114,4 @@ export '/main_screens/books/book_details_without_scroll/book_details_without_scr
     show BookDetailsWithoutScrollWidget;
 export '/main_screens/create_account/permissions_notifications/permissions_notifications_widget.dart'
     show PermissionsNotificationsWidget;
-export '/main_screens/books/sparke_books/sparke_books_widget.dart'
-    show SparkeBooksWidget;
+export '/sparke_books/sparke_books_widget.dart' show SparkeBooksWidget;

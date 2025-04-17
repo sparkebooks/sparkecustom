@@ -1,5 +1,5 @@
 import UIKit
-
+import FBSDKCoreKit
 import Flutter
 
 @main
@@ -9,6 +9,10 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
+    
+    // Ensure the advertiser ID collection is enabled before returning.
+    Settings.shared.isAdvertiserIDCollectionEnabled = true
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

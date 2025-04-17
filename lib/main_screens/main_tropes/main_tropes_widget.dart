@@ -311,11 +311,13 @@ class _MainTropesWidgetState extends State<MainTropesWidget> {
                                       final searchResults =
                                           _model.searchedBooks!.toList();
 
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children:
-                                            List.generate(searchResults.length,
-                                                (searchResultsIndex) {
+                                      return ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: searchResults.length,
+                                        itemBuilder:
+                                            (context, searchResultsIndex) {
                                           final searchResultsItem =
                                               searchResults[searchResultsIndex];
                                           return Visibility(
@@ -346,7 +348,7 @@ class _MainTropesWidgetState extends State<MainTropesWidget> {
                                               ),
                                             ),
                                           );
-                                        }),
+                                        },
                                       );
                                     },
                                   ),

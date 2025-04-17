@@ -1,13 +1,17 @@
-import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/new_components/loading_states/loading_page/loading_page_widget.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+
+import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/new_components/loading_states/loading_page/loading_page_widget.dart';
 import 'book_details_without_scroll_model.dart';
+
 export 'book_details_without_scroll_model.dart';
 
 class BookDetailsWithoutScrollWidget extends StatefulWidget {
@@ -36,6 +40,8 @@ class _BookDetailsWithoutScrollWidgetState
 
   @override
   void initState() {
+    log('---------------------------------------  INIT  ---------------------------------------');
+    
     super.initState();
     _model = createModel(context, () => BookDetailsWithoutScrollModel());
 

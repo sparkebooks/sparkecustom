@@ -1,16 +1,18 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/main_screens/books/book_components/modal_book_details/modal_book_details_widget.dart';
-import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import '/index.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '/main_screens/books/book_components/modal_book_details/modal_book_details_widget.dart';
 
 Future createUserBook(
   BuildContext context, {
@@ -334,8 +336,8 @@ Future loginUser(BuildContext context) async {
     await CoinsTable().insert({
       'firebase_user_id': currentUserReference?.id,
       'created_at': supaSerialize<DateTime>(getCurrentTimestamp),
-      'sparke_coins': 20,
-      'balance': 20,
+      'sparke_coins': 0,
+      'balance': 0,
       'updated_at': supaSerialize<DateTime>(getCurrentTimestamp),
       'purchased_coins': 0,
     });

@@ -122,7 +122,6 @@ class _BookReaderState extends State<BookReader> {
       print('Error initializing reader: $e');
       await _loadInitialChapter();
     } finally {
-      print('\ncurrent Chapter:::::: $_currentChapter');
       // await Future.delayed(const Duration(seconds: 1));
       // await widget.onInit(
       //   _currentPageIndex,
@@ -179,7 +178,6 @@ class _BookReaderState extends State<BookReader> {
 
   Future<List<PageContent>> _paginateChapter(
       String content, int chapterIndex) async {
-    print('chapterIndex ::::: $chapterIndex');
     List<PageContent> pages = [];
     final textPainter = TextPainter(textDirection: Directionality.of(context));
 
