@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">Sparke-Kaleo</string>
+    <string name="facebook_app_id">613777494861103</string>
+    <string name="fb_login_protocol_scheme">fb613777494861103</string>
+     <string name="facebook_client_token">f71c623c5ae0749d4717330ff77b8f65</string>
+          
+</resources>

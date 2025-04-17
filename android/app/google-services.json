@@ -1,0 +1,142 @@
+{
+  "project_info": {
+    "project_number": "522401384798",
+    "project_id": "sparke-7lyyy6",
+    "storage_bucket": "sparke-7lyyy6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522401384798:android:320027dbacd511e65a27cf",
+        "android_client_info": {
+          "package_name": "com.failvc.sparke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522401384798-2scrprtmskurc8jqrj47qe7sf3r6hoqv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.failvc.sparke",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ75dpEHZcLqbExYR2D34SE0a3POz7DfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "522401384798-1jjr5d9jsekju835av8425oaqoqmujfj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.failvc.sparkekaleo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522401384798:android:ebb17a496e82b7825a27cf",
+        "android_client_info": {
+          "package_name": "com.failvc.sparkeadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522401384798-cpkkj0h7br5ttshuu9k6nodb8mopl2nl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.failvc.sparkeadmin",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ75dpEHZcLqbExYR2D34SE0a3POz7DfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "522401384798-1jjr5d9jsekju835av8425oaqoqmujfj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.failvc.sparkekaleo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522401384798:android:20c5686c59e1eb835a27cf",
+        "android_client_info": {
+          "package_name": "com.failvc.sparkekaleo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522401384798-qu51batj4mgud9rdf3anm38jt917s7oq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.failvc.sparkekaleo",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ75dpEHZcLqbExYR2D34SE0a3POz7DfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "522401384798-1jjr5d9jsekju835av8425oaqoqmujfj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.failvc.sparkekaleo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
