@@ -87,5 +87,7 @@ flutter {
 }
 
 dependencies {
+    implementation 'io.branch.sdk.android:library:5.8.0'    // or latest 5.x version
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22"
 }

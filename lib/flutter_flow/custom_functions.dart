@@ -288,3 +288,28 @@ int? calculateDiscountedCoins(
 int calculateFreeChaptersCount(List<ChaptersRow> chapters) {
   return chapters.where((e) => !(e.paymentRequired ?? false)).length;
 }
+
+List<BooksRow> searchBooksByTitle(
+  List<BooksRow> allBooks,
+  String searchText,
+) {
+  List<BooksRow> searchedBooks = [];
+
+  searchedBooks = allBooks
+      .where(
+        (element) =>
+            element.title!.toLowerCase().contains(searchText.toLowerCase()) ||
+            element.id
+                .toString()
+                .toLowerCase()
+                .contains(searchText.toLowerCase()) ||
+            (element.primaryTrope != null
+                ? element.primaryTrope!
+                    .toLowerCase()
+                    .contains(searchText.toLowerCase())
+                : false),
+      )
+      .toList();
+
+  return searchedBooks;
+}

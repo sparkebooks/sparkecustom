@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sparke_kaleo/main_screens/books/search_book_page/search_book_page_widget.dart';
 
 import '/auth/base_auth_user_provider.dart';
 import '/backend/backend.dart';
@@ -596,6 +597,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   ParamType.bool,
                 ),
               ),
+            ),
+            FFRoute(
+              name: SearchBookPageWidget.routeName,
+              path: SearchBookPageWidget.routePath,
+              requireAuth: true,
+              builder: (context, params) => SearchBookPageWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
