@@ -35,9 +35,7 @@ class _BranchLinksHandlerState extends State<BranchLinksHandler> {
       branchSubscription = FlutterBranchSdk.listSession().listen((data) {
         if (data.containsKey('book_id')) {
           String bookId = data['book_id'];
-          String chapterId = data['chapter_id'];
-
-          log(chapterId);
+          String? chapterId = data['chapter_id'];
 
           widget.router.pushNamed(
             SparkeBooksWidget.routeName,

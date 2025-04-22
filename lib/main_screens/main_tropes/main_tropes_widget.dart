@@ -1,20 +1,21 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:sparke_kaleo/main_screens/books/search_book_page/search_book_page_widget.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import '/main_screens/books/book_components/book_list_large/book_list_large_widget.dart';
 import '/new_components/card_trope/card_trope_widget.dart';
 import '/new_components/loading_states/loading_list/loading_list_widget.dart';
 import '/new_components/loading_states/loading_tropes/loading_tropes_widget.dart';
 import '/new_components/modal_account_options/modal_account_options_widget.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/index.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/material.dart';
 import 'main_tropes_model.dart';
+
 export 'main_tropes_model.dart';
 
 class MainTropesWidget extends StatefulWidget {
@@ -143,119 +144,61 @@ class _MainTropesWidgetState extends State<MainTropesWidget> {
               actions: [],
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(64.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
-                  child: Container(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      onChanged: (_) => EasyDebounce.debounce(
-                        '_model.textController',
-                        Duration(milliseconds: 2000),
-                        () async {
-                          _model.isSearchResultLoading = true;
-                          safeSetState(() {});
-                          _model.searchedBooks =
-                              await actions.searchBooksInTropes(
-                            _model.textController.text,
-                            (currentUserDocument?.selectedTropes.toList() ??
-                                    [])
-                                .toList(),
-                          );
-                          _model.isSearchResultLoading = false;
-                          safeSetState(() {});
-
-                          safeSetState(() {});
-                        },
-                      ),
-                      autofocus: false,
-                      textCapitalization: TextCapitalization.words,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'Search for books or tropes here...',
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Figtree',
-                                  letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Figtree',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                child: Align(
+                  alignment: AlignmentDirectional(1.0, 0.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 15),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          SearchBookPageWidget.routeName,
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                            ),
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
                             color: FlutterFlowTheme.of(context).alternate,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor: (_model.textFieldFocusNode?.hasFocus ??
-                                false)
-                            ? FlutterFlowTheme.of(context).accent1
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                        suffixIcon: _model.textController!.text.isNotEmpty
-                            ? InkWell(
-                                onTap: () async {
-                                  _model.textController?.clear();
-                                  _model.isSearchResultLoading = true;
-                                  safeSetState(() {});
-                                  _model.searchedBooks =
-                                      await actions.searchBooksInTropes(
-                                    _model.textController.text,
-                                    (currentUserDocument?.selectedTropes
-                                                .toList() ??
-                                            [])
-                                        .toList(),
-                                  );
-                                  _model.isSearchResultLoading = false;
-                                  safeSetState(() {});
-
-                                  safeSetState(() {});
-                                  safeSetState(() {});
-                                },
-                                child: Icon(
-                                  Icons.clear,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 16.0,
+                        child: Padding(
+                          padding: EdgeInsets.all(6.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Search by book name, id or trope...',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontStyle: FontStyle.italic,
+                                      ),
                                 ),
-                              )
-                            : null,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Figtree',
-                            letterSpacing: 0.0,
+                              ),
+                            ],
                           ),
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
+                        ),
+                      ),
                     ),
                   ),
                 ),

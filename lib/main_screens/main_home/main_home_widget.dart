@@ -1,9 +1,21 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+import 'package:sparke_kaleo/main_screens/books/search_book_page/search_book_page_widget.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import '/main_screens/books/book_components/book_current_reading/book_current_reading_widget.dart';
 import '/main_screens/books/book_components/book_list_large/book_list_large_widget.dart';
 import '/main_screens/books/book_components/empty_state_current/empty_state_current_widget.dart';
@@ -16,17 +28,8 @@ import '/new_components/modal_account_options/modal_account_options_widget.dart'
 import '/new_components/section_trope_just_out/section_trope_just_out_widget.dart';
 import '/new_components/section_trope_popular_today/section_trope_popular_today_widget.dart';
 import '/new_components/section_trope_selected/section_trope_selected_widget.dart';
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/index.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'main_home_model.dart';
+
 export 'main_home_model.dart';
 
 class MainHomeWidget extends StatefulWidget {
@@ -312,6 +315,64 @@ class _MainHomeWidgetState extends State<MainHomeWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: AlignmentDirectional(1.0, 0.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          SearchBookPageWidget.routeName,
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                            ),
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 2.0,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(6.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Search by book name, id or trope...',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 FutureBuilder<List<HomeAdsRow>>(
                   future: _model.homeBanners(
                     requestFn: () => HomeAdsTable().queryRows(
@@ -1062,7 +1123,8 @@ class _MainHomeWidgetState extends State<MainHomeWidget> {
                       final selectedTropes =
                           ((currentUserDocument?.selectedTropes.toList() ?? [])
                                       .isNotEmpty
-                                  ? (currentUserDocument?.selectedTropes
+                                  ? (currentUserDocument
+                                          ?.selectedTropes
                                           .toList() ??
                                       [])
                                   : FFAppState()
