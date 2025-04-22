@@ -697,9 +697,6 @@ class _AuthMainWidgetState extends State<AuthMainWidget>
                                                         }.withoutNulls,
                                                       );
 
-                                                      await actions
-                                                          .logFacebookAppInstallEvent();
-
                                                       safeSetState(() {});
                                                     },
                                                     text: 'Get Started',

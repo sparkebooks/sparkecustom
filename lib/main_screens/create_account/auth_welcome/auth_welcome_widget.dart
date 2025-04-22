@@ -560,8 +560,6 @@ class _AuthWelcomeWidgetState extends State<AuthWelcomeWidget>
                                       ),
                                     );
                                   }
-
-                                  await actions.logFacebookAppInstallEvent();
                                 },
                                 text: 'Continue as Guest',
                                 options: FFButtonOptions(

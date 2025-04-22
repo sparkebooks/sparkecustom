@@ -642,16 +642,6 @@ class _ModalUpgradeCoinsWidgetState extends State<ModalUpgradeCoinsWidget>
                                     await revenue_cat.purchasePackage(
                                         widget.revenuecatPackageId!);
                                 if (_model.purchaseRevenuecat!) {
-                                  await actions.logFacebookPurchaseEvent(
-                                    widget.price,
-                                    widget.priceStringWithSymbol!,
-                                    valueOrDefault<String>(
-                                      (widget.priceStringWithSymbol!)
-                                          .substring(0, 1),
-                                      '\$',
-                                    ),
-                                    widget.coinAmount!,
-                                  );
                                   // add_new_purchase
                                   _model.newPurchase =
                                       await PurchasesTable().insert({

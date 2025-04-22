@@ -45,11 +45,6 @@ void main() async {
     loadDataAfterLaunch: true,
   );
 
-  // Start final custom actions code
-  await actions.requestTrackingPermission();
-
-  // End final custom actions code
-
   final Smartlook smartlook = Smartlook.instance;
 
   smartlook.start();
