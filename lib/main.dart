@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_branch_sdk/flutter_branch_sdk.dart';
@@ -21,7 +22,9 @@ import 'index.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await FlutterBranchSdk.init();
+  await FlutterBranchSdk.init(enableLogging: kDebugMode);
+  await FlutterBranchSdk.requestTrackingAuthorization();
+  // FlutterBranchSdk.validateSDKIntegration();
 
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();

@@ -30,7 +30,6 @@ dependencies:
   advertising_id: ^2.7.1
   app_links: 6.3.2
   app_links_platform_interface: 2.0.2
-  app_tracking_transparency: ^2.0.6+1
   auto_size_text: 3.0.0
   badges: 2.0.2
   cached_network_image: 3.4.1

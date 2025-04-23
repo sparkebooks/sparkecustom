@@ -1,3 +1,5 @@
+import 'package:flutter_branch_sdk/flutter_branch_sdk.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -11,6 +13,7 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'log_facebook_purchase_event.dart';
 import 'modal_upgrade_coins_model.dart';
 export 'modal_upgrade_coins_model.dart';
 
@@ -642,6 +645,16 @@ class _ModalUpgradeCoinsWidgetState extends State<ModalUpgradeCoinsWidget>
                                     await revenue_cat.purchasePackage(
                                         widget.revenuecatPackageId!);
                                 if (_model.purchaseRevenuecat!) {
+                                  await logFacebookPurchaseEvent(
+                                    widget.price,
+                                    widget.priceStringWithSymbol!,
+                                    valueOrDefault<String>(
+                                      (widget.priceStringWithSymbol!)
+                                          .substring(0, 1),
+                                      '\$',
+                                    ),
+                                    widget.coinAmount!,
+                                  );
                                   // add_new_purchase
                                   _model.newPurchase =
                                       await PurchasesTable().insert({

@@ -18,10 +18,10 @@ class BranchLinksHandler extends StatefulWidget {
   final Widget child;
 
   @override
-  _BranchLinksHandlerState createState() => _BranchLinksHandlerState();
+  BranchLinksHandlerState createState() => BranchLinksHandlerState();
 }
 
-class _BranchLinksHandlerState extends State<BranchLinksHandler> {
+class BranchLinksHandlerState extends State<BranchLinksHandler> {
   StreamSubscription<Map>? branchSubscription;
 
   @override
@@ -31,38 +31,14 @@ class _BranchLinksHandlerState extends State<BranchLinksHandler> {
   }
 
   void initBranchIo() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      branchSubscription = FlutterBranchSdk.listSession().listen((data) {
-        if (data.containsKey('book_id')) {
-          String bookId = data['book_id'];
-          String? chapterId = data['chapter_id'];
-
-          widget.router.pushNamed(
-            SparkeBooksWidget.routeName,
-            queryParameters: {
-              'bookId': bookId,
-              'chapterId': chapterId,
-              'isFromDeepLink': 'true',
-            },
-          );
-        } else {
-          log(
-            'No book_id parameter found in the deep link payload.',
-            name: 'Branch',
-          );
-        }
-      });
-    });
-
-    FlutterBranchSdk.getLatestReferringParams().then((data) {
-      if (data.containsKey('+is_first_session')) {
-        bool is_first_session = data['+is_first_session'];
-
-        if (is_first_session) {
-          if (data.containsKey('book_id')) {
-            String bookId = data['book_id'];
-            String chapterId = data['chapter_id'];
-
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        branchSubscription = FlutterBranchSdk.listSession().listen((data) {
+          log('Incoming branch link: $data');
+          final clickedBranchLink = data['+clicked_branch_link'] == true;
+          final bookId = data['book_id'] as String?;
+          final chapterId = data['chapter_id'] as String?;
+          if (clickedBranchLink && bookId != null) {
             widget.router.pushNamed(
               SparkeBooksWidget.routeName,
               queryParameters: {
@@ -71,15 +47,13 @@ class _BranchLinksHandlerState extends State<BranchLinksHandler> {
                 'isFromDeepLink': 'true',
               },
             );
-          } else {
-            log(
-              'No book_id parameter found in the deep link payload.',
-              name: 'Branch',
-            );
           }
-        }
-      }
-    });
+        }, onError: (e, s) {
+          log('Error listening on incoming branch links',
+              error: e, stackTrace: s);
+        });
+      },
+    );
   }
 
   @override

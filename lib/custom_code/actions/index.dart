@@ -20,5 +20,4 @@ export 'close_keyboard.dart' show closeKeyboard;
 export 'get_device_model.dart' show getDeviceModel;
 export 'get_o_s_version.dart' show getOSVersion;
 export 'get_app_version.dart' show getAppVersion;
-export 'get_advertiser_id.dart' show getAdvertiserId;
 export 'updated_local_user_books.dart' show updatedLocalUserBooks;

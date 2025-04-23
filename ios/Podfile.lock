@@ -3,8 +3,6 @@ PODS:
     - Flutter
   - app_links (0.0.2):
     - Flutter
-  - app_tracking_transparency (0.0.1):
-    - Flutter
   - AppAuth (1.7.6):
     - AppAuth/Core (= 1.7.6)
     - AppAuth/ExternalUserAgent (= 1.7.6)
@@ -53,10 +51,6 @@ PODS:
   - DKPhotoGallery/Resource (0.0.19):
     - SDWebImage
     - SwiftyGif
-  - facebook_app_events (0.0.1):
-    - FBAudienceNetwork (= 6.15.0)
-    - FBSDKCoreKit (~> 17.0)
-    - Flutter
   - FBAEMKit (17.1.0):
     - FBSDKCoreKit_Basics (= 17.1.0)
   - FBAudienceNetwork (6.15.0)
@@ -334,11 +328,9 @@ PODS:
 DEPENDENCIES:
   - advertising_id (from `.symlinks/plugins/advertising_id/ios`)
   - app_links (from `.symlinks/plugins/app_links/ios`)
-  - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - cloud_functions (from `.symlinks/plugins/cloud_functions/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
-  - facebook_app_events (from `.symlinks/plugins/facebook_app_events/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Firebase/Messaging
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
@@ -422,16 +414,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/advertising_id/ios"
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
-  app_tracking_transparency:
-    :path: ".symlinks/plugins/app_tracking_transparency/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   cloud_functions:
     :path: ".symlinks/plugins/cloud_functions/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
-  facebook_app_events:
-    :path: ".symlinks/plugins/facebook_app_events/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   firebase_auth:
@@ -492,7 +480,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   advertising_id: d5de9e659986092d7ca50977dc50f4f4fcd4c30a
   app_links: 3da4c36b46cac3bf24eb897f1a6ce80bda109874
-  app_tracking_transparency: 3d84f147f67ca82d3c15355c36b1fa6b66ca7c92
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   BranchSDK: a12f9aa63d7ba562fdff5509d4aed081f1098ec0
   cloud_firestore: f5f37d55cffb850b85f46ce9ac852ca60e9545d4
@@ -500,7 +487,6 @@ SPEC CHECKSUMS:
   device_info_plus: 71ffc6ab7634ade6267c7a93088ed7e4f74e5896
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
-  facebook_app_events: d64bb920a7612b9966395b1599e4ada13e1eeead
   FBAEMKit: cb719c53575a3be86ea873279f30d6a2c4e15881
   FBAudienceNetwork: 80a035aa69cc3a71c99e44cb5c2874e4cef9909f
   FBSDKCoreKit: ecdb980a24633ccb012700299ceb16d0235e14d2

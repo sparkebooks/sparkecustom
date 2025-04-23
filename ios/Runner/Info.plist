@@ -31,22 +31,22 @@
         <key>CFBundleURLTypes</key>
         <array>
             <dict>
+			    <key>CFBundleTypeRole</key>
+			    <string>Editor</string>
+			    <key>CFBundleURLSchemes</key>
+			    <array>
+			    	<string>sparkekaleo</string>
+			    </array>
+                <key>CFBundleURLName</key>
+				<string>com.failvc.sparke</string>
+		    </dict>
+            <dict>
                 <key>CFBundleTypeRole</key>
                 <string>Editor</string>
                 <key>CFBundleURLSchemes</key>
                 <array>
                     <string>com.googleusercontent.apps.522401384798-m1ivulmnm6jfpq9pknbse4o7a19r1d77</string>
                     <string>fb613777494861103</string>
-                </array>
-            </dict>
-            <dict>
-                <key>CFBundleTypeRole</key>
-                <string>Editor</string>
-                <key>CFBundleURLName</key>
-                <string>io.Branch.Branchsters</string>
-                <key>CFBundleURLSchemes</key>
-                <array>
-                    <string>branchsters</string>
                 </array>
             </dict>
         </array>
@@ -56,11 +56,13 @@
             <key>live</key>
             <string>key_live_mAjZW6FiqttpmN2KoIyD7dbmrxc0499p</string>
             <key>test</key>
-            <string>key_live_mAjZW6FiqttpmN2KoIyD7dbmrxc0499p</string>
+			<string>key_test_dAk61WwptBwnhN1SpKAy0ijlvCi07XM6</string>
         </dict>
+        <key>branch_disable_nativelink</key>
+        	<true/>
 
         <key>FlutterDeepLinkingEnabled</key>
-        <true/>
+        <false/>
 
         <key>FacebookAppID</key>
         <string>613777494861103</string>
@@ -81,7 +83,7 @@
         <key>PermissionGroupNotification</key>
         <string>In order to keep you updated on new content, promos and reminders, this app requires permission to send notifications.</string>
         <key>NSUserTrackingUsageDescription</key>
-        <string>This identifier will be used to deliver personalized ads to you.</string>
+        <string>We use your data to provide better app experiences and personalized offers. We never sell your information.</string>
 
         <key>UIBackgroundModes</key>
         <array>

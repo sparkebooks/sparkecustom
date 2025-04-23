@@ -30,26 +30,10 @@
             android:value="key_live_mAjZW6FiqttpmN2KoIyD7dbmrxc0499p"/>
         <meta-data
             android:name="io.branch.sdk.BranchKey.test"
-            android:value="key_live_mAjZW6FiqttpmN2KoIyD7dbmrxc0499p"/>
+            android:value="key_test_dAk61WwptBwnhN1SpKAy0ijlvCi07XM6"/>
         <meta-data
             android:name="io.branch.sdk.TestMode"
             android:value="false"/>
-
-        <!-- Facebook Activities -->
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="@string/fb_login_protocol_scheme"/>
-            </intent-filter>
-        </activity>
 
         <!-- Flutter MainActivity -->
         <activity
@@ -80,36 +64,45 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="branchsters" android:host="open"/>
+                <data android:scheme="sparkekaleo"/>
             </intent-filter>
 
             <!-- Branch App Links – Live -->
             <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="https" android:host="9bik5.app.link"/>
-                <data android:scheme="https" android:host="9bik5-alternate.app.link"/>
-            </intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="https" android:host="9bik5.app.link" />
+				<data android:scheme="https" android:host="9bik5-alternate.app.link" />
+			</intent-filter>
 
-            <!-- Branch App Links – Test -->
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="https" android:host="9bik5.test-app.link"/>
-                <data android:scheme="https" android:host="9bik5-alternate.test-app.link"/>
-            </intent-filter>
+			<!-- Branch App Links - Test -->
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="https" android:host="9bik5.test-app.link" />
+				<data android:scheme="https" android:host="9bik5-alternate.test-app.link" />
+			</intent-filter>
 
-            <!-- (Optional) Existing Flutter deep link -->
             <meta-data
                 android:name="flutter_deeplinking_enabled"
-                android:value="true"/>
-            <intent-filter android:autoVerify="true">
+                android:value="false"/>
+        </activity>
+
+        <!-- Facebook Activities -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="sparkekaleo" android:host="sparkekaleo.page.link"/>
+                <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
 

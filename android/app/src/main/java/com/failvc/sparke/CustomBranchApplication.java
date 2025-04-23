@@ -11,5 +11,6 @@ public class CustomBranchApplication extends Application {
         Branch.enableLogging();
         // Kick off the Branch init
         Branch.getAutoInstance(this);
+        Branch.setFBAppID("613777494861103");
     }
 }
