@@ -1,0 +1,14 @@
+MAKEFLAGS += --always-make -j
+
+buildAndroid:
+	fvm flutter build appbundle
+	open ./build/app/outputs/bundle/release
+# then: https://play.google.com/console/u/0/developers/9088834486078723199/app/4975293369460141426/releases/overview
+
+buildIos:
+	fvm flutter build ipa
+	open ./build/ios/ipa
+	open /Applications/Transporter.app
+# then: https://appstoreconnect.apple.com/apps/1621996148/testflight/ios
+
+buildAndroidIos: buildAndroid buildIos
