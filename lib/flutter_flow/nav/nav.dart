@@ -775,7 +775,11 @@ class FFRoute {
             return redirectLocation;
           }
 
-          if (requireAuth && !appStateNotifier.loggedIn) {
+          if (requireAuth &&
+              !appStateNotifier.loggedIn &&
+              // allow reading books without being logged in, if e.g arriving from a deep link
+              name != SparkeBooksWidget.routeName &&
+              name != BookDetailsWithoutScrollWidget.routeName) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
             return '/authWelcome';
           }
