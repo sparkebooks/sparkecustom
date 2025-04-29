@@ -1,26 +1,28 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
+import 'package:sparke_kaleo/main_screens/in_app_purchases/unlock_page/modal_unlock_chapter/ad_card/ad_card.dart';
+import 'package:sparke_kaleo/utils.dart';
+
+import '/actions/actions.dart' as action_blocks;
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
+import '/index.dart';
 import '/main_screens/in_app_purchases/unlock_page/modal_upgrade_coins/modal_upgrade_coins_widget.dart';
 import '/main_screens/in_app_purchases/unlock_page/ui_coin_balance/ui_coin_balance_widget.dart';
 import '/new_components/loading_states/loading_modal/loading_modal_widget.dart';
-import '/new_components/ui_daily_pass_countdown/ui_daily_pass_countdown_widget.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
-import '/index.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'modal_unlock_chapter_model.dart';
+
 export 'modal_unlock_chapter_model.dart';
 
 class ModalUnlockChapterWidget extends StatefulWidget {
@@ -131,7 +133,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                 ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 5.0,
                       color: Color(0x34111417),
@@ -171,8 +173,9 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                             children: [
                               Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Unlock Next Chapter',
+                                child: AutoSizeText(
+                                  'Unlock to continue reading...',
+                                  maxLines: 1,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -206,47 +209,11 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                             ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 16.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 40.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              wrapWithModel(
-                                model: _model.uiCoinBalanceModel,
-                                updateCallback: () => safeSetState(() {}),
-                                updateOnChange: true,
-                                child: UiCoinBalanceWidget(),
-                              ),
-                              FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                borderRadius: 8.0,
-                                borderWidth: 2.0,
-                                buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context).accent1,
-                                icon: Icon(
-                                  FFIcons.kbuilding02,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  context.pushNamed(
-                                      UpgradeCoinShopWidget.routeName);
-                                },
-                              ),
-                            ].divide(SizedBox(width: 8.0)),
-                          ),
+                        wrapWithModel(
+                          model: _model.uiCoinBalanceModel,
+                          updateCallback: () => safeSetState(() {}),
+                          updateOnChange: true,
+                          child: UiCoinBalanceWidget(),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -284,7 +251,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Read Now',
+                                                'Single chapter',
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -295,70 +262,59 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                           lineHeight: 1.4,
                                                         ),
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    '1 Chapter',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleLarge
-                                                        .override(
-                                                          fontFamily: 'Figtree',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.28),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        '(${valueOrDefault<String>(
-                                                          widget.bookID
-                                                              ?.costPerChapter
-                                                              ?.toString(),
-                                                          '5',
-                                                        )}x)',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Figtree',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                              valueOrDefault<String>(
+                                                widget.bookID?.costPerChapter
+                                                    ?.toString(),
+                                                '5',
+                                              ).let(
+                                                (nCoins) => Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      nCoins,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleLarge
+                                                          .override(
+                                                            fontFamily:
+                                                                'Figtree',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/Coin_(256_x_256_px)_(2).png',
+                                                        width: 20.0,
+                                                        fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                  ),
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.asset(
-                                                      'assets/images/Coin_(256_x_256_px)_(2).png',
-                                                      width: 20.0,
-                                                      fit: BoxFit.cover,
+                                                    Text(
+                                                      '($nCoins coins /ch.)',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Figtree',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ].divide(SizedBox(width: 4)),
+                                                ),
                                               ),
                                             ].divide(SizedBox(height: 4.0)),
                                           ),
                                         ),
                                       ),
-                                      FFButtonWidget(
+                                      UnlockButton(
+                                        text: 'Unlock 1 ch.',
                                         onPressed: () async {
-                                          if (updatedDesignCoinsRow!.balance! >=
+                                          if ((updatedDesignCoinsRow?.balance ??
+                                                  0) >=
                                               valueOrDefault<int>(
                                                 widget.bookID?.costPerChapter,
                                                 5,
@@ -467,34 +423,6 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
 
                                           safeSetState(() {});
                                         },
-                                        text: 'Redeem',
-                                        options: FFButtonOptions(
-                                          width: 100.0,
-                                          height: 40.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent1,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLarge
-                                                  .override(
-                                                    fontFamily: 'Figtree',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          elevation: 0.0,
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .accent1,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
                                       ),
                                     ].divide(SizedBox(width: 2.0)),
                                   ),
@@ -503,18 +431,31 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                             ),
                           ],
                         ),
-                        if (updatedDesignCoinsRow?.balance != null)
-                          Container(
-                            decoration: BoxDecoration(),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {},
+                        valueOrDefault<int>(
+                          _model.bulkChapterNumber,
+                          10,
+                        ).let(
+                          (nChapters) => valueOrDefault<int>(
+                            functions.calculateDiscountedCoins(
+                                valueOrDefault<int>(
+                                  _model.bulkChapterNumber,
+                                  10,
+                                ),
+                                valueOrDefault<double>(
+                                  widget.bookID?.costPerChapter?.toDouble(),
+                                  5.0,
+                                ),
+                                valueOrDefault<double>(
+                                  widget.bookID?.discountPerChapter,
+                                  30.0,
+                                )),
+                            0,
+                          ).let(
+                            (nCoins) => Container(
+                              decoration: BoxDecoration(),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 8.0, 16.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -550,7 +491,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      'Read Now',
+                                                      '$nChapters chapters',
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: FlutterFlowTheme
@@ -599,7 +540,8 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                               '${valueOrDefault<String>(
                                                                 widget.bookID
                                                                     ?.discountPerChapter
-                                                                    ?.toString(),
+                                                                    ?.toStringAsFixed(
+                                                                        0),
                                                                 '20',
                                                               )}% OFF',
                                                               style: FlutterFlowTheme
@@ -624,15 +566,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      valueOrDefault<String>(
-                                                        '${valueOrDefault<String>(
-                                                          _model
-                                                              .bulkChapterNumber
-                                                              .toString(),
-                                                          '10',
-                                                        )} Chapters',
-                                                        '10',
-                                                      ),
+                                                      '$nCoins',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .titleLarge
@@ -641,49 +575,6 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                                 'Figtree',
                                                             letterSpacing: 0.0,
                                                           ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.28),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            '(${functions.calculateDiscountedCoins(valueOrDefault<int>(
-                                                                  _model
-                                                                      .bulkChapterNumber,
-                                                                  10,
-                                                                ), valueOrDefault<double>(
-                                                                  widget.bookID
-                                                                      ?.costPerChapter
-                                                                      ?.toDouble(),
-                                                                  5.0,
-                                                                ), valueOrDefault<double>(
-                                                                  widget.bookID
-                                                                      ?.discountPerChapter,
-                                                                  30.0,
-                                                                )).toString()}x)',
-                                                            '0x',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Figtree',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
                                                     ),
                                                     ClipRRect(
                                                       borderRadius:
@@ -695,16 +586,29 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                  ],
+                                                    Text(
+                                                      '(${(nCoins / nChapters).toStringAsFixed(0)} coins /ch.)',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Figtree',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(SizedBox(width: 4)),
                                                 ),
                                               ].divide(SizedBox(height: 4.0)),
                                             ),
                                           ),
                                         ),
-                                        FFButtonWidget(
+                                        UnlockButton(
+                                          text: 'Unlock $nChapters ch.',
                                           onPressed: () async {
-                                            if (updatedDesignCoinsRow!
-                                                    .balance! >=
+                                            if ((updatedDesignCoinsRow
+                                                        ?.balance ??
+                                                    0) >=
                                                 functions.getTotalDiscount(
                                                     valueOrDefault<int>(
                                                       _model.bulkChapterNumber,
@@ -726,8 +630,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                   10,
                                                 ),
                                                 valueOrDefault<int>(
-                                                  widget
-                                                      .bookID?.costPerChapter,
+                                                  widget.bookID?.costPerChapter,
                                                   5,
                                                 ),
                                                 widget.userBook!.id,
@@ -812,35 +715,6 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
 
                                             safeSetState(() {});
                                           },
-                                          text: 'Redeem',
-                                          options: FFButtonOptions(
-                                            width: 100.0,
-                                            height: 40.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .accent1,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .override(
-                                                      fontFamily: 'Figtree',
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            elevation: 0.0,
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
                                         ),
                                       ].divide(SizedBox(width: 2.0)),
                                     ),
@@ -849,6 +723,27 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                               ),
                             ),
                           ),
+                        ),
+                        WatchAdsToUnlockNextChapterCard(
+                          onUnlocked: () {
+                            widget.isRedeemedSuccessfully?.call(true, 1);
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).clearSnackBars();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Chapter redeemed successfully.',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).info,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 3000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).success,
+                              ),
+                            );
+                          },
+                        ),
                         if (responsiveVisibility(
                           context: context,
                           phone: false,
@@ -1368,94 +1263,6 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 16.0, 8.0),
-                              child: wrapWithModel(
-                                model: _model.uiDailyPassCountdownModel,
-                                updateCallback: () => safeSetState(() {}),
-                                updateOnChange: true,
-                                child: UiDailyPassCountdownWidget(
-                                  timerStops: () async {
-                                    // update_page_notify
-                                    _model.notifyMe = false;
-                                    safeSetState(() {});
-                                  },
-                                ),
-                              ),
-                            ),
-                            if ((_model.uiDailyPassCountdownModel.timerValue ==
-                                    '00:00:00') &&
-                                (_model.notifyMe == false))
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      // update_user_doc_with_daily_pass
-
-                                      await currentUserReference!
-                                          .update(createUsersRecordData(
-                                        dailyPassLastActive:
-                                            getCurrentTimestamp,
-                                      ));
-                                      // updating_book_daily_pass_counter
-                                      await BooksTable().update(
-                                        data: {
-                                          'daily_pass_counter':
-                                              valueOrDefault<int>(
-                                                    widget.bookID
-                                                        ?.dailyPassCounter,
-                                                    0,
-                                                  ) +
-                                                  1,
-                                        },
-                                        matchingRows: (rows) => rows.eqOrNull(
-                                          'id',
-                                          widget.bookID?.id,
-                                        ),
-                                      );
-                                      await widget.callBack?.call(
-                                        1,
-                                      );
-                                      FFAppState().isBottomSheetOpen = false;
-                                      safeSetState(() {});
-                                      Navigator.pop(context);
-                                    },
-                                    text: 'Use Daily Pass',
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.ticketAlt,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 48.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
                             if ((_model.uiDailyPassCountdownModel.timerValue !=
                                     '00:00:00') ||
                                 (_model.notifyMe == true))
@@ -1545,47 +1352,6 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                   ),
                                 ),
                               ),
-                            if (false)
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      Navigator.pop(context);
-                                      FFAppState().isBottomSheetOpen = false;
-                                      safeSetState(() {});
-                                      context.safePop();
-                                    },
-                                    text: 'Stop reading for now...',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 48.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 0.0,
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
                           ]
                               .divide(SizedBox(height: 12.0))
                               .addToStart(SizedBox(height: 8.0)),
@@ -1601,6 +1367,39 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class UnlockButton extends StatelessWidget {
+  final String text;
+  final Future<void> Function() onPressed;
+
+  const UnlockButton({super.key, required this.text, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return FFButtonWidget(
+      onPressed: onPressed,
+      text: text,
+      options: FFButtonOptions(
+        width: 130.0,
+        height: 40.0,
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        color: FlutterFlowTheme.of(context).primary,
+        textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+              fontFamily: 'Figtree',
+              letterSpacing: 0.0,
+              color: Colors.white,
+            ),
+        elevation: 0.0,
+        borderSide: BorderSide(
+          color: FlutterFlowTheme.of(context).accent1,
+          width: 2.0,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
     );
   }
 }

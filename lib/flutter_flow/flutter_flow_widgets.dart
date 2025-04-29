@@ -104,6 +104,7 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
                 text == null ? null : widget.options.textStyle?.withoutColor(),
             textAlign: widget.options.textAlign,
             maxLines: maxLines,
+            minFontSize: 10,
             overflow: TextOverflow.ellipsis,
           );
 

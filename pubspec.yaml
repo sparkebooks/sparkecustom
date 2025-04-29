@@ -164,6 +164,7 @@ dependencies:
   flutter_branch_sdk: ^8.4.1
   flutter_meta_sdk: ^1.0.5
   flutter_smartlook: ^4.1.25
+  applovin_max: ^4.4.0
 
 dependency_overrides:
   http: 1.2.2

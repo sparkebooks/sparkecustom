@@ -977,7 +977,7 @@ class _BookReaderState extends State<BookReader> {
     updateBookState();
     // if (_currentChapter > 1) {
     if (!_freeChaptersList.contains(_currentChapter)) {
-      if (valueOrDefault<bool>(currentUserDocument?.anonymousUser, false)) {
+      if (false && valueOrDefault<bool>(currentUserDocument?.anonymousUser, false)) {
         if (!_isBottomSheetOpen) {
           _isBottomSheetOpen = true;
           safeSetState(() {});
