@@ -98,68 +98,65 @@ class _BookDetailsWithoutScrollWidgetState
         FocusScope.of(context).unfocus();
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          body: FutureBuilder<List<ChaptersRow>>(
-            future: FFAppState().chaptersQuery(
-              uniqueQueryKey: valueOrDefault<String>(
-                widget.userbookData?.userbookId.toString(),
-                '0',
-              ),
-              requestFn: () => ChaptersTable().queryRows(
-                queryFn: (q) => q
-                    .eqOrNull(
-                      'book_id',
-                      widget.userbookData?.bookId,
-                    )
-                    .order('chapter_order', ascending: true),
-              ),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        body: FutureBuilder<List<ChaptersRow>>(
+          future: FFAppState().chaptersQuery(
+            uniqueQueryKey: valueOrDefault<String>(
+              widget.userbookData?.userbookId.toString(),
+              '0',
             ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return LoadingPageWidget(
-                  showTop: true,
-                  bookTitle: widget.userbookData?.bookName,
-                );
-              }
-              List<ChaptersRow> chaptersQueryChaptersRowList = snapshot.data!;
-
-              return Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Builder(
-                  builder: (context) {
-                    if ((_model.bookref != null &&
-                            (_model.bookref)!.isNotEmpty) &&
-                        (_model.userbookref != null &&
-                            (_model.userbookref)!.isNotEmpty)) {
-                      return custom_widgets.BookReader(
-                        width: double.infinity,
-                        height: double.infinity,
-                        chapters: chaptersQueryChaptersRowList,
-                        userbookData: widget.userbookData!,
-                        bookRef: _model.bookref?.firstOrNull,
-                        userbookRef: _model.userbookref?.firstOrNull,
-                        isFromSparkeBooks: widget.isFromSparkeBooks,
-                      );
-                    } else {
-                      return wrapWithModel(
-                        model: _model.loadingPageModel,
-                        updateCallback: () => safeSetState(() {}),
-                        child: LoadingPageWidget(),
-                      );
-                    }
-                  },
-                ),
-              );
-            },
+            requestFn: () => ChaptersTable().queryRows(
+              queryFn: (q) => q
+                  .eqOrNull(
+                    'book_id',
+                    widget.userbookData?.bookId,
+                  )
+                  .order('chapter_order', ascending: true),
+            ),
           ),
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return LoadingPageWidget(
+                showTop: true,
+                bookTitle: widget.userbookData?.bookName,
+              );
+            }
+            List<ChaptersRow> chaptersQueryChaptersRowList = snapshot.data!;
+
+            return Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Builder(
+                builder: (context) {
+                  if ((_model.bookref != null &&
+                          (_model.bookref)!.isNotEmpty) &&
+                      (_model.userbookref != null &&
+                          (_model.userbookref)!.isNotEmpty)) {
+                    return custom_widgets.BookReader(
+                      width: double.infinity,
+                      height: double.infinity,
+                      chapters: chaptersQueryChaptersRowList,
+                      userbookData: widget.userbookData!,
+                      bookRef: _model.bookref?.firstOrNull,
+                      userbookRef: _model.userbookref?.firstOrNull,
+                      isFromSparkeBooks: widget.isFromSparkeBooks,
+                    );
+                  } else {
+                    return wrapWithModel(
+                      model: _model.loadingPageModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: LoadingPageWidget(),
+                    );
+                  }
+                },
+              ),
+            );
+          },
         ),
       ),
     );
