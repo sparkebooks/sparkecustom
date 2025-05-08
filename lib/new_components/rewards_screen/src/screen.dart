@@ -1,9 +1,10 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sparke_kaleo/flutter_flow/flutter_flow_theme.dart';
 import 'package:sparke_kaleo/flutter_flow/flutter_flow_util.dart';
-import 'package:sparke_kaleo/main.dart';
 import 'package:sparke_kaleo/main_screens/create_account/auth_main/auth_main_widget.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/src/config.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/src/handlers/create_account_reward_handler.dart';
@@ -11,6 +12,7 @@ import 'package:sparke_kaleo/new_components/rewards_screen/src/handlers/create_a
 import 'bloc.dart';
 import 'data/social_media_connection_repo.dart/state.dart';
 import 'state.dart';
+import 'utils/coin_icon.dart';
 import 'utils/show_snack_bar.dart';
 
 class RewardsScreen extends StatelessWidget {
@@ -42,19 +44,12 @@ class _Theme extends StatelessWidget {
     final data = Theme.of(context);
     return Theme(
       data: data.copyWith(
-        textTheme: TextTheme.of(context).apply(
-          fontFamily: 'FfUntitledui',
-        ),
+        textTheme: GoogleFonts.ptSerifTextTheme(),
         appBarTheme: AppBarTheme(
           elevation: 0,
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.black,
           centerTitle: true,
-          titleTextStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: FFAppState().selectedFontFamily,
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-              ),
         ),
       ),
       child: child,
@@ -69,11 +64,8 @@ class _Content extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.state;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          sharedPreferences.clear();
-        },
-      ),
+      // floatingActionButton:
+      //     FloatingActionButton(onPressed: () => sharedPreferences.clear()),
       appBar: AppBar(
         leading: BackButton(
           onPressed: () => Navigator.pop(context),
@@ -140,10 +132,10 @@ class _Body extends StatelessWidget {
             _CoinBalance(),
             _CheckInStreak(),
             _WatchAd(),
-            if (!data.isConnectedOnSocialMedia(SocialMedia.facebook))
-              _ConnectOnSocialMedia(socialMedia: SocialMedia.facebook),
             if (data.isAnonymousUser) _CreateAccount(),
             // _InviteFriend(),
+            if (!data.isConnectedOnSocialMedia(SocialMedia.facebook))
+              _ConnectOnSocialMedia(socialMedia: SocialMedia.facebook),
           ].divide(SizedBox(height: 16)),
         ),
       ),
@@ -152,72 +144,21 @@ class _Body extends StatelessWidget {
 }
 
 class _Card extends StatelessWidget {
-  const _Card();
+  final Widget child;
+
+  const _Card({required this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: FlutterFlowTheme.of(context).alternate,
           width: 2.0,
         ),
       ),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        'Watch 2 ads to unlock',
-                        textAlign: TextAlign.center,
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Figtree',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                    ].divide(SizedBox(width: 8.0)),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '{state.nWatchedAds}/2',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Figtree',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 2),
-                        child: Image.asset(
-                          'assets/images/ads_icon.png',
-                          width: 30,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ].divide(SizedBox(width: 8)),
-                  ),
-                ].divide(SizedBox(height: 4.0)),
-              ),
-            ),
-            Text('Trailing'),
-          ].divide(SizedBox(width: 2.0)),
-        ),
-      ),
+      child: child,
     );
   }
 }
@@ -229,21 +170,73 @@ class _CoinBalance extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = context.data;
     return Center(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+      child: Column(
         children: [
-          Text('Current balance: '),
-          AnimatedFlipCounter(
-            duration: Duration(seconds: 2),
-            value: data.coinBalance,
-            textStyle: DefaultTextStyle.of(context).style,
+          Text('Current Balance'),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 4,
+            children: [
+              AnimatedFlipCounter(
+                duration: Duration(seconds: 2),
+                value: data.coinBalance,
+                textStyle: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              SizedBox.square(dimension: 35, child: CoinIcon()),
+            ],
           ),
         ],
       ),
     );
   }
 }
+
+class _CoinIncreaseButton extends StatelessWidget {
+  final int nCoins;
+  final Function()? onPressed;
+  final bool isLoading;
+  const _CoinIncreaseButton(
+      {required this.nCoins, required this.onPressed, this.isLoading = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 100,
+      height: 50,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        onPressed: onPressed,
+        child: isLoading
+            ? _ButtonProgressIndicator()
+            : Row(
+                spacing: 4,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AutoSizeText('+$nCoins'),
+                  SizedBox.square(dimension: 25, child: CoinIcon()),
+                ],
+              ),
+      ),
+    );
+  }
+}
+
+class _ButtonProgressIndicator extends StatelessWidget {
+  const _ButtonProgressIndicator();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.square(dimension: 20, child: CircularProgressIndicator());
+  }
+}
+
+final _tilePadding = EdgeInsets.all(12);
 
 class _CheckInStreak extends StatefulWidget {
   const _CheckInStreak();
@@ -258,22 +251,25 @@ class _CheckInStreakState extends State<_CheckInStreak> {
   @override
   Widget build(BuildContext context) {
     final data = context.data.streakData;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text('Check-In Streak: ${data.nDays}'),
-        Text('Check in daily to maintain your streak'),
-        ElevatedButton(
-          onPressed: _isLoading || data.didCheckInToday ? null : _onPressed,
-          child: _isLoading
-              ? _ButtonProgressIndicator()
-              : data.didCheckInToday
-                  ? Text('Check in again tomorrow')
-                  : Text(
-                      'Check in now (+${checkInStreakReward(streakDays: data.nDays)} coins)',
-                    ),
+    return _Card(
+      child: ListTile(
+        contentPadding: _tilePadding,
+        title: AutoSizeText(
+          'Check-In Streak: ${data.nDays} ${data.nDays == 1 ? 'day' : 'days'}',
+          maxLines: 1,
         ),
-      ],
+        subtitle: AutoSizeText(
+          data.didCheckInToday
+              ? 'Check in again tomorrow'
+              : 'Check in daily to maintain your streak',
+          maxLines: 2,
+        ),
+        trailing: _CoinIncreaseButton(
+          nCoins: checkInStreakReward(streakDays: data.nDays),
+          onPressed: _isLoading || data.didCheckInToday ? null : _onPressed,
+          isLoading: _isLoading,
+        ),
+      ),
     );
   }
 
@@ -294,15 +290,6 @@ class _CheckInStreakState extends State<_CheckInStreak> {
   }
 }
 
-class _ButtonProgressIndicator extends StatelessWidget {
-  const _ButtonProgressIndicator();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.square(dimension: 20, child: CircularProgressIndicator());
-  }
-}
-
 class _WatchAd extends StatefulWidget {
   const _WatchAd();
 
@@ -315,13 +302,26 @@ class _WatchAdState extends State<_WatchAd> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: _isLoading ? null : _onPressed,
-      icon: _isLoading
-          ? _ButtonProgressIndicator()
-          : SizedBox.square(
-              dimension: 30, child: Image.asset('assets/images/ads_icon.png')),
-      label: Text('Watch an ad (+$watchAdReward coins)'),
+    return _Card(
+      child: ListTile(
+        contentPadding: _tilePadding,
+        title: Row(
+          spacing: 8,
+          children: [
+            Flexible(
+              child: AutoSizeText('Watch an ad', maxLines: 1),
+            ),
+            SizedBox.square(
+                dimension: 30,
+                child: Image.asset('assets/images/ads_icon.png')),
+          ],
+        ),
+        trailing: _CoinIncreaseButton(
+          nCoins: watchAdReward,
+          isLoading: _isLoading,
+          onPressed: _isLoading ? null : _onPressed,
+        ),
+      ),
     );
   }
 
@@ -336,9 +336,33 @@ class _WatchAdState extends State<_WatchAd> {
       }
     } catch (e) {
       if (!mounted) return;
-      showUnexpectedErrorStackBar(context: context, error: e);
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ad not available right now, please try later')),
+      );
     }
     setState(() => _isLoading = false);
+  }
+}
+
+class _CreateAccount extends StatelessWidget {
+  const _CreateAccount();
+
+  @override
+  Widget build(BuildContext context) {
+    return _Card(
+      child: ListTile(
+        contentPadding: _tilePadding,
+        title: Text('Create an account'),
+        trailing: _CoinIncreaseButton(
+          nCoins: createAccountReward,
+          onPressed: () {
+            CreateAccountRewardHandler.isEnabled = true;
+            GoRouter.of(context).pushNamed(AuthMainWidget.routeName);
+          },
+        ),
+      ),
+    );
   }
 }
 
@@ -357,14 +381,22 @@ class _ConnectOnSocialMediaState extends State<_ConnectOnSocialMedia> {
   @override
   Widget build(BuildContext context) {
     final data = context.data;
-    return ElevatedButton(
-      onPressed: _isLoading || data.isConnectedOnSocialMedia(widget.socialMedia)
-          ? null
-          : _onPressed,
-      child: _isLoading
-          ? _ButtonProgressIndicator()
-          : Text(
-              '${widget.socialMedia.connectText()} (+$connectOnSocialMediaReward coins)'),
+    return _Card(
+      child: ListTile(
+        contentPadding: _tilePadding,
+        title: AutoSizeText(
+          widget.socialMedia.connectText(),
+          maxLines: 1,
+        ),
+        trailing: _CoinIncreaseButton(
+          nCoins: connectOnSocialMediaReward,
+          onPressed:
+              _isLoading || data.isConnectedOnSocialMedia(widget.socialMedia)
+                  ? null
+                  : _onPressed,
+          isLoading: _isLoading,
+        ),
+      ),
     );
   }
 
@@ -391,19 +423,4 @@ extension on SocialMedia {
         SocialMedia.tikTok => 'Follow us on TikTok',
         SocialMedia.youTube => 'Subscribe to us on YouTube',
       };
-}
-
-class _CreateAccount extends StatelessWidget {
-  const _CreateAccount();
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        CreateAccountRewardHandler.isEnabled = true;
-        GoRouter.of(context).pushNamed(AuthMainWidget.routeName);
-      },
-      child: Text('Create account (+$createAccountReward coins)'),
-    );
-  }
 }

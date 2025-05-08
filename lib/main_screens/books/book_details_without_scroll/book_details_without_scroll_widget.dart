@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/rewards_screen.dart';
+import 'package:sparke_kaleo/new_components/rewards_screen/src/utils/coin_icon.dart';
 
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
@@ -195,13 +196,24 @@ class _RewardsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => Navigator.of(context).pushRewardsScreen(),
-      icon: Image.asset(
-        'assets/images/Coin_(256_x_256_px)_(2).png',
-        width: 30.0,
-        height: 30.0,
-        fit: BoxFit.cover,
+    return InkWell(
+      onTap: () => Navigator.of(context).pushRewardsScreen(),
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 2,
+          children: const [
+            Text(
+              'Unlock',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox.square(dimension: 30, child: CoinIcon()),
+          ],
+        ),
       ),
     );
   }
