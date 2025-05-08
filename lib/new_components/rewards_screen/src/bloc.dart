@@ -156,23 +156,14 @@ class Bloc extends ChangeNotifier {
 
 extension on SocialMedia {
   Future<void> launch() async {
-    const url = 'https://www.facebook.com/people/Sparke/61573975714275';
+    const fbPeopleId = '61573975714275';
+    const fbUrl = 'fb://profile/$fbPeopleId';
+    const fallbackUrl = 'https://www.facebook.com/people/Sparke/$fbPeopleId';
     try {
-      bool res = await launchUrl(
-        Uri.parse('fb://facewebmodal/f?href=$url'),
-        mode: LaunchMode.externalApplication,
-      );
-      if (!res) throw res;
+      await launchUrl(Uri.parse(fbUrl));
     } catch (e) {
-      try {
-        bool res = await launchUrl(
-          Uri.parse(url),
-          mode: LaunchMode.externalApplication,
-        );
-        if (!res) throw res;
-      } catch (e, s) {
-        log('Failed to launch $url', error: e, stackTrace: s);
-      }
+      await launchUrl(Uri.parse(fallbackUrl),
+          mode: LaunchMode.externalApplication);
     }
   }
 }

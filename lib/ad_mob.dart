@@ -5,31 +5,69 @@ import 'dart:io';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdMob {
-  final _initCompleter = Completer();
+  var _unlockNextChapterRewardAd = Completer<RewardedAd>();
+  var _coinRewardAd = Completer<RewardedAd>();
 
   Future<void> initialize() async {
     try {
+      await _requestConsent();
       await MobileAds.instance.initialize();
-      _initCompleter.complete();
+      _unlockNextChapterRewardAd = _loadRewardedAd(Ad.unlockNextChapterReward);
+      _coinRewardAd = _loadRewardedAd(Ad.coinReward);
     } catch (e, s) {
       log('Error initializing adMob', error: e, stackTrace: s);
-      _initCompleter.completeError(e, s);
+      _unlockNextChapterRewardAd.completeError(e, s);
+      _coinRewardAd.completeError(e, s);
     }
   }
 
-  Future<bool> showRewardedAd(Ad adType) async {
+  Future<void> _requestConsent() async {
+    final completer = Completer();
+    ConsentInformation.instance.requestConsentInfoUpdate(
+      ConsentRequestParameters(tagForUnderAgeOfConsent: false),
+      () async {
+        ConsentForm.loadAndShowConsentFormIfRequired(
+          (error) => error != null
+              ? completer.completeError(error)
+              : completer.complete(),
+        );
+      },
+      (FormError error) => completer.completeError(error),
+    );
+    await completer.future;
+  }
+
+  Completer<RewardedAd> _loadRewardedAd(Ad ad) {
     try {
-      await _initCompleter.future;
       final loadCompleter = Completer<RewardedAd>();
-      final adCompleter = Completer();
       RewardedAd.load(
-          adUnitId: adType.unitId,
+          adUnitId: ad.unitId,
           request: const AdRequest(),
           rewardedAdLoadCallback: RewardedAdLoadCallback(
             onAdLoaded: (ad) => loadCompleter.complete(ad),
             onAdFailedToLoad: (LoadAdError error) =>
                 loadCompleter.completeError(error),
           ));
+      return loadCompleter;
+    } catch (e, s) {
+      log('Error showing adMob rewarded ad', error: e, stackTrace: s);
+      rethrow;
+    }
+  }
+
+  Future<bool> showRewardedAd(Ad adType) async {
+    final Completer<RewardedAd> loadCompleter;
+    switch (adType) {
+      case Ad.unlockNextChapterReward:
+        loadCompleter = _unlockNextChapterRewardAd;
+        _unlockNextChapterRewardAd =
+            _loadRewardedAd(Ad.unlockNextChapterReward);
+      case Ad.coinReward:
+        loadCompleter = _coinRewardAd;
+        _coinRewardAd = _loadRewardedAd(Ad.coinReward);
+    }
+    final adCompleter = Completer();
+    try {
       final ad = await loadCompleter.future;
       bool isRewardEarned = false;
       ad.fullScreenContentCallback = FullScreenContentCallback(

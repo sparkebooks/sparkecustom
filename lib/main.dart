@@ -33,7 +33,7 @@ void main() async {
   // FlutterBranchSdk.validateSDKIntegration();
 
   sharedPreferences = await SharedPreferences.getInstance();
-  adMob = kIsWeb ? null : AdMob()?..initialize();
+  adMob = kIsWeb ? null : AdMob();
 
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
@@ -116,6 +116,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
+    adMob?.initialize();
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
     userStream = sparkeKaleoFirebaseUserStream()

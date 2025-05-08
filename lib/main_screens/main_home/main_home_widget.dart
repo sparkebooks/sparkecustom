@@ -224,7 +224,7 @@ class _MainHomeWidgetState extends State<MainHomeWidget> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () => Navigator.of(context).pushRewardsScreen()),
+        // floatingActionButton: FloatingActionButton(onPressed: () => Navigator.of(context).pushRewardsScreen()),
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
