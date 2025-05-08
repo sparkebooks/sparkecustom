@@ -31,19 +31,28 @@ class AppLovinAds {
   }
 
   Future<bool> showRewardedAd() async {
-    await _initCompleter.future;
-    final completer = Completer<bool>();
-    AppLovinMAX.setRewardedAdListener(RewardedAdListener(
-      onAdLoadedCallback: (ad) => AppLovinMAX.showRewardedAd(_rewardedAdUnitId),
-      onAdLoadFailedCallback: (adUnitId, error) =>
-          completer.completeError(error),
-      onAdDisplayedCallback: (ad) {},
-      onAdDisplayFailedCallback: (ad, error) => completer.completeError(error),
-      onAdClickedCallback: (ad) {},
-      onAdHiddenCallback: (ad) => completer.complete(false),
-      onAdReceivedRewardCallback: (ad, reward) => completer.complete(true),
-    ));
-    AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
-    return await completer.future;
+    await Future.delayed(Duration(seconds: 1));
+    return true;
+    try {
+      await _initCompleter.future;
+      final completer = Completer<bool>();
+      AppLovinMAX.setRewardedAdListener(RewardedAdListener(
+        onAdLoadedCallback: (ad) =>
+            AppLovinMAX.showRewardedAd(_rewardedAdUnitId),
+        onAdLoadFailedCallback: (adUnitId, error) =>
+            completer.completeError(error),
+        onAdDisplayedCallback: (ad) {},
+        onAdDisplayFailedCallback: (ad, error) =>
+            completer.completeError(error),
+        onAdClickedCallback: (ad) {},
+        onAdHiddenCallback: (ad) => completer.complete(false),
+        onAdReceivedRewardCallback: (ad, reward) => completer.complete(true),
+      ));
+      AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
+      return await completer.future;
+    } catch (e, s) {
+      log('Error showing rewarded ad', error: e, stackTrace: s);
+      rethrow;
+    }
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smartlook/flutter_smartlook.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sparke_kaleo/branch_handler.dart';
 
 import '/backend/supabase/supabase.dart';
@@ -18,6 +19,9 @@ import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'index.dart';
+import 'new_components/rewards_screen/src/handlers/create_account_reward_handler.dart';
+
+late final SharedPreferences sharedPreferences;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +29,8 @@ void main() async {
   await FlutterBranchSdk.init(enableLogging: kDebugMode);
   await FlutterBranchSdk.requestTrackingAuthorization();
   // FlutterBranchSdk.validateSDKIntegration();
+
+  sharedPreferences = await SharedPreferences.getInstance();
 
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
@@ -215,6 +221,7 @@ class _MyAppState extends State<MyApp> {
           ),
           themeMode: _themeMode,
           routerConfig: _router,
+          builder: (context, child) => CreateAccountRewardHandler(child: child!),
         ),
       ),
     );
