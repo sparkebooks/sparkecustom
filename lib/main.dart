@@ -12,6 +12,7 @@ import 'package:sparke_kaleo/branch_handler.dart';
 import '/backend/supabase/supabase.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/flutter_flow_theme.dart';
+import 'ad_mob.dart';
 import 'auth/firebase_auth/auth_util.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'backend/firebase/firebase_config.dart';
@@ -22,6 +23,7 @@ import 'index.dart';
 import 'new_components/rewards_screen/src/handlers/create_account_reward_handler.dart';
 
 late final SharedPreferences sharedPreferences;
+late final AdMob? adMob;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +33,7 @@ void main() async {
   // FlutterBranchSdk.validateSDKIntegration();
 
   sharedPreferences = await SharedPreferences.getInstance();
+  adMob = kIsWeb ? null : AdMob()?..initialize();
 
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
@@ -221,7 +224,8 @@ class _MyAppState extends State<MyApp> {
           ),
           themeMode: _themeMode,
           routerConfig: _router,
-          builder: (context, child) => CreateAccountRewardHandler(child: child!),
+          builder: (context, child) =>
+              CreateAccountRewardHandler(child: child!),
         ),
       ),
     );

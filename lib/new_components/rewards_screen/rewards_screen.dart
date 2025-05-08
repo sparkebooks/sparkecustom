@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sparke_kaleo/auth/firebase_auth/auth_util.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/src/dependencies.dart';
 
-import '../../applovin_ads.dart';
 import '../../main.dart';
 import 'src/screen.dart' as src;
 
@@ -20,12 +19,12 @@ class RewardsScreen extends StatefulWidget {
 }
 
 class _RewardsScreenState extends State<RewardsScreen> {
-  late final _dependencies = appLovinAds == null
+  late final _dependencies = adMob == null
       ? null
       : RewardsScreenDependencies.create(
           currentUser: () => currentUserDocument,
           userStream: authenticatedUserStream,
-          appLovinAds: appLovinAds!,
+          adMob: adMob!,
           sharedPreferences: sharedPreferences,
         );
 

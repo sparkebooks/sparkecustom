@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:sparke_kaleo/applovin_ads.dart';
+import 'package:sparke_kaleo/ad_mob.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/src/config.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/src/data/check_in_streak_repo/state_x.dart';
 import 'package:sparke_kaleo/new_components/rewards_screen/src/data/check_in_streak_repo/streak_repo.dart';
@@ -23,14 +23,14 @@ class Bloc extends ChangeNotifier {
 
   final UsersRecord? Function() currentUser;
   final Stream<UsersRecord?> userStream;
-  final AppLovinAds appLovinAds;
+  final AdMob adMob;
   final CheckInStreakRepo checkInStreakRepo;
   final SocialMediaConnectionRepo socialMediaConnectionRepo;
 
   Bloc({
     required this.currentUser,
     required this.userStream,
-    required this.appLovinAds,
+    required this.adMob,
     required this.checkInStreakRepo,
     required this.socialMediaConnectionRepo,
   }) : _state = UiState(dataStatus: DataStatus.loading) {
@@ -115,7 +115,7 @@ class Bloc extends ChangeNotifier {
 
   Future<bool> watchAd() async {
     try {
-      final res = await appLovinAds.showRewardedAd();
+      final res = await adMob.showRewardedAd(Ad.coinReward);
       final userId = currentUser()?.uid;
       if (!res || !hasListeners || userId == null) return false;
       await DbUtils.incrementCoinBalance(userId: userId, nCoins: watchAdReward);
