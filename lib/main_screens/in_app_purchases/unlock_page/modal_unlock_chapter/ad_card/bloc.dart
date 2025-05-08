@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:sparke_kaleo/applovin_ads.dart';
+import 'package:sparke_kaleo/ad_mob.dart';
+import 'package:sparke_kaleo/main.dart';
 
 import 'state.dart';
 
@@ -25,14 +26,13 @@ class Bloc extends ChangeNotifier {
   }
 
   Future<void> showAd() async {
-    if (appLovinAds == null) return;
+    if (adMob == null) return;
     _emit(_state.copyWith(
       isLoadingOrDisplayingAd: true,
       error: () => null,
     ));
     try {
-      final res = await Future.delayed(Duration(seconds: 1), () => true);
-      // final res = await appLovinAds!.showRewardedAd();
+      final res = await adMob!.showRewardedAd(Ad.unlockNextChapterReward);
       if (!hasListeners || !res) return;
       final nWatchedAds = _state.nWatchedAds + 1;
       _adCredits = nWatchedAds;
