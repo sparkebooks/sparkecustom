@@ -6,7 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:sparke_kaleo/main_screens/books/search_book_page/search_book_page_widget.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/rewards_screen.dart';
+import 'package:sparke_kaleo/new_components/rewards/rewards_screen.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';

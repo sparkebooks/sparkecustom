@@ -1,4 +1,4 @@
-import 'package:sparke_kaleo/new_components/rewards_screen/src/data/check_in_streak_repo/state.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/data/check_in_streak_repo/state.dart';
 
 extension StreakStateX on StreakState {
   bool get isCurrentlyLost =>
