@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sparke_kaleo/ad_mob.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/config.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/data/check_in_streak_repo/state_x.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/data/check_in_streak_repo/streak_repo.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/data/social_media_connection_repo.dart/social_media_connection_repo.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/config.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/data/check_in_streak_repo/state_x.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/data/check_in_streak_repo/streak_repo.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/data/social_media_connection_repo.dart/social_media_connection_repo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../backend/schema/users_record.dart';

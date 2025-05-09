@@ -1,3 +1,5 @@
+import 'package:sparke_kaleo/new_components/rewards/rewards_card.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
@@ -570,20 +572,7 @@ class _MainProfileWidgetState extends State<MainProfileWidget>
                               ),
                             ),
                           ),
-                        if (currentUserDocument?.dailyPassLastActive != null)
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: AuthUserStreamWidget(
-                              builder: (context) => wrapWithModel(
-                                model: _model.uiDailyPassCountdownModel,
-                                updateCallback: () => safeSetState(() {}),
-                                updateOnChange: true,
-                                child: UiDailyPassCountdownWidget(
-                                  timerStops: () async {},
-                                ),
-                              ),
-                            ),
-                          ),
+                        RewardsCard(),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Container(

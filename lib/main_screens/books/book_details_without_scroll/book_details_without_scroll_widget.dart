@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/rewards_screen.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/utils/coin_icon.dart';
+import 'package:sparke_kaleo/new_components/rewards/rewards_screen.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/utils/coin_icon.dart';
 
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
@@ -205,7 +205,7 @@ class _RewardsButton extends StatelessWidget {
           spacing: 2,
           children: const [
             Text(
-              'Unlock',
+              'Earn free',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,

@@ -20,7 +20,7 @@ import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'index.dart';
-import 'new_components/rewards_screen/src/handlers/create_account_reward_handler.dart';
+import 'new_components/rewards/src/handlers/create_account_reward_handler.dart';
 
 late final SharedPreferences sharedPreferences;
 late final AdMob? adMob;

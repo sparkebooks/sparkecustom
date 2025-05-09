@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/utils/coin_icon.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/utils/coin_icon.dart';
 
 void showRewardSuccessSnackBar({
   required BuildContext context,

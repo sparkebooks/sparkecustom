@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sparke_kaleo/auth/firebase_auth/auth_util.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/dependencies.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/dependencies.dart';
 
 import '../../main.dart';
 import 'src/screen.dart' as src;

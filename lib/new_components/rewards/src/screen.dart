@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:sparke_kaleo/flutter_flow/flutter_flow_theme.dart';
 import 'package:sparke_kaleo/flutter_flow/flutter_flow_util.dart';
 import 'package:sparke_kaleo/main_screens/create_account/auth_main/auth_main_widget.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/config.dart';
-import 'package:sparke_kaleo/new_components/rewards_screen/src/handlers/create_account_reward_handler.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/config.dart';
+import 'package:sparke_kaleo/new_components/rewards/src/handlers/create_account_reward_handler.dart';
 
 import 'bloc.dart';
 import 'data/social_media_connection_repo.dart/state.dart';
