@@ -170,6 +170,7 @@ dependencies:
   animated_flip_counter: ^0.3.4
   google_mobile_ads: ^6.0.0
   gma_mediation_meta: ^1.2.0
+  gma_mediation_unity: ^1.4.0
 
 dependency_overrides:
   http: 1.2.2

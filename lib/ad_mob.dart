@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:gma_mediation_unity/gma_mediation_unity.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdMob {
@@ -12,6 +13,8 @@ class AdMob {
     try {
       await _requestConsent();
       final res = await MobileAds.instance.initialize();
+      await GmaMediationUnity().setGDPRConsent(true);
+      await GmaMediationUnity().setCCPAConsent(true);
       res.adapterStatuses.entries.forEach(
           (e) => log('ad adapter status ${e.key}: ${e.value.description}'));
       _unlockNextChapterRewardAd = _loadRewardedAd(Ad.unlockNextChapterReward);
