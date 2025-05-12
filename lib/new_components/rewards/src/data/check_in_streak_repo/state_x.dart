@@ -2,7 +2,8 @@ import 'package:sparke_kaleo/new_components/rewards/src/data/check_in_streak_rep
 
 extension StreakStateX on StreakState {
   bool get isCurrentlyLost =>
-      lastCheckIn != null && DateTime.now().day - lastCheckIn!.dayNumber > 1;
+      lastCheckIn != null &&
+      DateTime.now().dayNumber - lastCheckIn!.dayNumber > 1;
 
   bool get didCheckInToday =>
       lastCheckIn != null && lastCheckIn!.dayNumber == DateTime.now().dayNumber;
