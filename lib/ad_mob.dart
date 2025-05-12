@@ -11,7 +11,9 @@ class AdMob {
   Future<void> initialize() async {
     try {
       await _requestConsent();
-      await MobileAds.instance.initialize();
+      final res = await MobileAds.instance.initialize();
+      res.adapterStatuses.entries.forEach(
+          (e) => log('ad adapter status ${e.key}: ${e.value.description}'));
       _unlockNextChapterRewardAd = _loadRewardedAd(Ad.unlockNextChapterReward);
       _coinRewardAd = _loadRewardedAd(Ad.coinReward);
     } catch (e, s) {
