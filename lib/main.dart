@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> {
       child: SmartlookRecordingWidget(
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Sparke-Kaleo',
+          title: 'Sparke',
           scrollBehavior: MyAppScrollBehavior(),
           localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,
