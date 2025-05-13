@@ -572,7 +572,7 @@ class _MainProfileWidgetState extends State<MainProfileWidget>
                               ),
                             ),
                           ),
-                        RewardsCard(),
+                        SizedBox(width: 390, child: RewardsCard()),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Container(

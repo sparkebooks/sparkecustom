@@ -72,14 +72,20 @@ class _Content extends StatelessWidget {
         ),
         title: Text('Earn Rewards'),
       ),
-      body: switch (state.dataStatus) {
-        DataStatus.loading => _LoadingBody(),
-        DataStatus.error => _ErrorBody(dataError: state.dataError!),
-        DataStatus.loaded => Provider.value(
-            value: state.data!,
-            child: _Body(),
-          ),
-      },
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: SizedBox(
+          width: 500,
+          child: switch (state.dataStatus) {
+            DataStatus.loading => _LoadingBody(),
+            DataStatus.error => _ErrorBody(dataError: state.dataError!),
+            DataStatus.loaded => Provider.value(
+                value: state.data!,
+                child: _Body(),
+              ),
+          },
+        ),
+      ),
     );
   }
 }
