@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'profile_settings_model.dart';
+import 'utils.dart';
 export 'profile_settings_model.dart';
 
 class ProfileSettingsWidget extends StatefulWidget {
@@ -111,30 +112,7 @@ class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'This page is coming soon!',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                fontFamily: 'Figtree',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        duration: Duration(milliseconds: 3000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                      ),
-                                    );
-                                  },
+                                  onTap: openAboutPage,
                                   child: Container(
                                     width: double.infinity,
                                     height: 60.0,
@@ -203,30 +181,7 @@ class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'This page is coming soon!',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                fontFamily: 'Figtree',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        duration: Duration(milliseconds: 3000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                      ),
-                                    );
-                                  },
+                                  onTap: openTermsOfUsePage,
                                   child: Container(
                                     width: double.infinity,
                                     height: 60.0,
@@ -295,30 +250,7 @@ class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'This page is coming soon!',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                fontFamily: 'Figtree',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        duration: Duration(milliseconds: 3000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                      ),
-                                    );
-                                  },
+                                  onTap: openPrivacyPolicyPage,
                                   child: Container(
                                     width: double.infinity,
                                     height: 60.0,
