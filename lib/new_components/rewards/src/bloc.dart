@@ -64,8 +64,8 @@ class Bloc extends ChangeNotifier {
 
   void _initialize() async {
     final userId = currentUser()?.uid;
-    if (userId == null) return;
     try {
+      if (userId == null) throw 'No user';
       final res = await DbUtils.getOrCreateCoinsEntry(userId: userId);
       state = state.copyWith(
         dataStatus: DataStatus.loaded,
