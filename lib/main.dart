@@ -8,6 +8,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sparke_kaleo/branch_handler.dart';
+import 'package:sparke_kaleo/smartlook.dart';
 
 import '/backend/supabase/supabase.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -56,12 +57,6 @@ void main() async {
     debugLogEnabled: true,
     loadDataAfterLaunch: true,
   );
-
-  final Smartlook smartlook = Smartlook.instance;
-
-  smartlook.start();
-  smartlook.preferences
-      .setProjectKey('44224deda9b0ac7989939e37f05242ecf88a0fb5');
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -128,6 +123,7 @@ class _MyAppState extends State<MyApp> {
       Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
+    startSmartlook();
   }
 
   @override
