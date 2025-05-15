@@ -1,4 +1,4 @@
-package com.failvc.sparke;
+package com.failvc.sparke2;
 
 import android.app.Application;
 import io.branch.referral.Branch;

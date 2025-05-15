@@ -1,4 +1,4 @@
-package com.failvc.sparke
+package com.failvc.sparke2
 
 import io.flutter.embedding.android.FlutterActivity
 

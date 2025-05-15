@@ -51,6 +51,42 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:522401384798:android:ab9b08e2c9e057cf5a27cf",
+        "android_client_info": {
+          "package_name": "com.failvc.sparke2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ75dpEHZcLqbExYR2D34SE0a3POz7DfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522401384798-q0k2s5bmi2l2otqf6qp5h9p193abhuah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "522401384798-1jjr5d9jsekju835av8425oaqoqmujfj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.failvc.sparkekaleo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:522401384798:android:ebb17a496e82b7825a27cf",
         "android_client_info": {
           "package_name": "com.failvc.sparkeadmin"

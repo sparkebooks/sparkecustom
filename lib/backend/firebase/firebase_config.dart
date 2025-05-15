@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sparke_kaleo/firebase_options.dart';
 
 Future initFirebase() async {
   if (kIsWeb) {
@@ -12,6 +13,7 @@ Future initFirebase() async {
             messagingSenderId: "522401384798",
             appId: "1:522401384798:web:444bbf7070e14dd55a27cf"));
   } else {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
   }
 }
