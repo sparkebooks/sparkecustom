@@ -11,7 +11,7 @@
 
     <application
         android:name=".CustomBranchApplication"
-        android:label="Sparke-Kaleo"
+        android:label="Sparke"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
