@@ -218,6 +218,8 @@ PODS:
     - FBAudienceNetwork
     - FBSDKCoreKit
     - Flutter
+  - flutter_native_splash (0.0.1):
+    - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
   - flutter_smartlook (4.1.25):
@@ -368,6 +370,7 @@ DEPENDENCIES:
   - flutter_branch_sdk (from `.symlinks/plugins/flutter_branch_sdk/ios`)
   - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
   - flutter_meta_sdk (from `.symlinks/plugins/flutter_meta_sdk/ios`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_smartlook (from `.symlinks/plugins/flutter_smartlook/ios`)
   - gma_mediation_meta (from `.symlinks/plugins/gma_mediation_meta/ios`)
@@ -479,6 +482,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_facebook_auth/ios"
   flutter_meta_sdk:
     :path: ".symlinks/plugins/flutter_meta_sdk/ios"
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_smartlook:
@@ -571,6 +576,7 @@ SPEC CHECKSUMS:
   flutter_branch_sdk: 71ad62179c5d571b60cccbe9021680e401503356
   flutter_facebook_auth: 8a9ad5fbfc25b77e7a53ea8986866950b27edcae
   flutter_meta_sdk: 7d4dfb3061e9135ab022e49a9fccf666d3c47fbe
+  flutter_native_splash: 35ddbc7228eafcb3969dcc5f1fbbe27c1145a4f0
   flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
   flutter_smartlook: 49ab945ff1c2a85ad8bedb2767ba64a937b631c6
   gma_mediation_meta: aedba09d87fbec30a04b9cca7be910a5da8dec9e

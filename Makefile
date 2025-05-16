@@ -15,3 +15,9 @@ buildIos:
 # then: https://appstoreconnect.apple.com/apps/1621996148/testflight/ios
 
 buildAndroidIos: buildAndroid buildIos
+
+generateLauncherIcons:
+	fvm dart run flutter_launcher_icons -f launcher_and_splash/flutter_launcher_icons.yaml
+
+generateSplashScreen:
+	fvm dart run flutter_native_splash:create --path=launcher_and_splash/flutter_native_splash.yaml
