@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:gma_mediation_unity/gma_mediation_unity.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -102,7 +103,7 @@ enum Ad {
   coinReward;
 }
 
-bool _useTestAds = false; //kDebugMode;
+bool _useTestAds = kDebugMode;
 
 extension on Ad {
   String get unitId => switch (this) {
