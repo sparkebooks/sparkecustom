@@ -865,23 +865,30 @@ class _BookReaderState extends State<BookReader> {
   }
 
   Widget _buildNavigationOverlays() {
-    return Row(
-      children: [
-        _buildNavigationOverlay(
-          onTap: () => _handleNavigation(false),
-        ),
-        _buildNavigationOverlay(
-          onTap: () {
-            setState(() {
-              FFAppState().readingMode = !FFAppState().readingMode;
-              // handleUserChanges();
-            });
-          },
-        ),
-        _buildNavigationOverlay(
-          onTap: () => _handleNavigation(true),
-        ),
-      ],
+    return GestureDetector(
+      onHorizontalDragEnd: (details) {
+        final move = details.velocity.pixelsPerSecond.dx;
+        if (move.abs() < 100) return;
+        _handleNavigation(move < 0);
+      },
+      child: Row(
+        children: [
+          _buildNavigationOverlay(
+            onTap: () => _handleNavigation(false),
+          ),
+          _buildNavigationOverlay(
+            onTap: () {
+              setState(() {
+                FFAppState().readingMode = !FFAppState().readingMode;
+                // handleUserChanges();
+              });
+            },
+          ),
+          _buildNavigationOverlay(
+            onTap: () => _handleNavigation(true),
+          ),
+        ],
+      ),
     );
   }
 
@@ -977,7 +984,8 @@ class _BookReaderState extends State<BookReader> {
     updateBookState();
     // if (_currentChapter > 1) {
     if (!_freeChaptersList.contains(_currentChapter)) {
-      if (false && valueOrDefault<bool>(currentUserDocument?.anonymousUser, false)) {
+      if (false &&
+          valueOrDefault<bool>(currentUserDocument?.anonymousUser, false)) {
         if (!_isBottomSheetOpen) {
           _isBottomSheetOpen = true;
           safeSetState(() {});
