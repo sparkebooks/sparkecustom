@@ -26,6 +26,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
           userStream: authenticatedUserStream,
           adMob: adMob!,
           sharedPreferences: sharedPreferences,
+          inAppReviewManager: inAppReviewManager,
         );
 
   @override

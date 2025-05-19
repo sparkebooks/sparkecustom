@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sparke_kaleo/ad_mob.dart';
+import 'package:sparke_kaleo/in_app_review_manager/in_app_review_manager.dart';
 import 'package:sparke_kaleo/new_components/rewards/src/config.dart';
 import 'package:sparke_kaleo/new_components/rewards/src/data/check_in_streak_repo/state_x.dart';
 import 'package:sparke_kaleo/new_components/rewards/src/data/check_in_streak_repo/streak_repo.dart';
@@ -26,6 +27,7 @@ class Bloc extends ChangeNotifier {
   final AdMob adMob;
   final CheckInStreakRepo checkInStreakRepo;
   final SocialMediaConnectionRepo socialMediaConnectionRepo;
+  final InAppReviewManager inAppReviewManager;
 
   Bloc({
     required this.currentUser,
@@ -33,6 +35,7 @@ class Bloc extends ChangeNotifier {
     required this.adMob,
     required this.checkInStreakRepo,
     required this.socialMediaConnectionRepo,
+    required this.inAppReviewManager,
   }) : _state = UiState(dataStatus: DataStatus.loading) {
     _appLifecycleListener = AppLifecycleListener(
       onResume: () => _appResumeStreamController.add(null),
@@ -102,6 +105,7 @@ class Bloc extends ChangeNotifier {
       await DbUtils.incrementCoinBalance(userId: userId, nCoins: reward);
       final data = state.data;
       if (data == null || !hasListeners) return 0;
+      inAppReviewManager.reportCoinUnlockOnRewardsScreen();
       state = state.copyWith.data!(
         coinBalance: data.coinBalance + reward,
         streakData: checkInStreakRepo.state.convert(),
@@ -121,6 +125,7 @@ class Bloc extends ChangeNotifier {
       await DbUtils.incrementCoinBalance(userId: userId, nCoins: watchAdReward);
       final data = state.data;
       if (data == null || !hasListeners) return false;
+      inAppReviewManager.reportCoinUnlockOnRewardsScreen();
       state =
           state.copyWith.data!(coinBalance: data.coinBalance + watchAdReward);
       return true;
@@ -142,6 +147,7 @@ class Bloc extends ChangeNotifier {
           socialMedia: socialMedia, isConnected: true);
       final data = state.data;
       if (data == null || !hasListeners) return;
+      inAppReviewManager.reportCoinUnlockOnRewardsScreen();
       state = state.copyWith.data!(
         isConnectedOnSocialMediaMap: socialMediaConnectionRepo.state.data,
         coinBalance: data.coinBalance + connectOnSocialMediaReward,

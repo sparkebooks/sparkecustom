@@ -20,11 +20,13 @@ import 'backend/firebase/firebase_config.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/revenue_cat_util.dart' as revenue_cat;
+import 'in_app_review_manager/in_app_review_manager.dart';
 import 'index.dart';
 import 'new_components/rewards/src/handlers/create_account_reward_handler.dart';
 
 late final SharedPreferences sharedPreferences;
 late final AdMob? adMob;
+late final InAppReviewManager inAppReviewManager;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +37,7 @@ void main() async {
 
   sharedPreferences = await SharedPreferences.getInstance();
   adMob = kIsWeb ? null : AdMob();
+  inAppReviewManager = InAppReviewManager(sharedPreferences: sharedPreferences);
 
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();

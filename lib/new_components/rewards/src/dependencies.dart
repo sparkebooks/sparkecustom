@@ -4,6 +4,7 @@ import 'package:sparke_kaleo/new_components/rewards/src/data/social_media_connec
 
 import '../../../ad_mob.dart';
 import '../../../backend/schema/users_record.dart';
+import '../../../in_app_review_manager/in_app_review_manager.dart';
 import 'bloc.dart';
 
 class RewardsScreenDependencies {
@@ -16,6 +17,7 @@ class RewardsScreenDependencies {
     required SharedPreferences sharedPreferences,
     required UsersRecord? Function() currentUser,
     required Stream<UsersRecord?> userStream,
+    required InAppReviewManager inAppReviewManager,
   }) {
     final checkInStreakRepo =
         CheckInStreakRepo(sharedPreferences: sharedPreferences);
@@ -27,6 +29,7 @@ class RewardsScreenDependencies {
           adMob: adMob,
           checkInStreakRepo: checkInStreakRepo,
           socialMediaConnectionRepo: socialMediaConnectionRepo,
+          inAppReviewManager: inAppReviewManager,
         );
     return RewardsScreenDependencies(blocBuilder: blocBuilder);
   }

@@ -1,4 +1,5 @@
 // Automatic FlutterFlow imports
+import '../../main.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
@@ -1100,6 +1101,7 @@ class _BookReaderState extends State<BookReader> {
                         if (isRedeemed) {
                           _unlockedChapters =
                               _unlockedChapters + noOfChaptersRedeemed;
+                          inAppReviewManager.reportChapterUnlockedOnPaywall();
                           // Add all newly unlocked chapters to _freeChaptersList
                           // This handles bulk chapter unlocking
                           int startChapter = _currentChapter;
