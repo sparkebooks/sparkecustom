@@ -123,30 +123,6 @@
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
-		<key>CFBundleIcons</key>
-		<dict>
-		    <key>CFBundlePrimaryIcon</key>
-		    <dict>
-		        <key>CFBundleIconFiles</key>
-		        <array>
-		            <string>AppIcon</string>
-		        </array>
-		        <key>UIPrerenderedIcon</key>
-		        <false/>
-		    </dict>
-		    <key>CFBundleAlternateIcons</key>
-		    <dict>
-		        <key>AltIcon1</key>
-		        <dict>
-		            <key>CFBundleIconFiles</key>
-		            <array>
-		                <string>AltIcon1</string>
-		            </array>
-		            <key>UIPrerenderedIcon</key>
-		            <false/>
-		        </dict>
-		    </dict>
-		</dict>
 		<key>GADApplicationIdentifier</key>
 		<string>ca-app-pub-9014681896021862~6455574589</string>
 		<key>SKAdNetworkItems</key>
