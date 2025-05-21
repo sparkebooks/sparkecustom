@@ -17,7 +17,7 @@ buildIos:
 buildAndroidIos: buildAndroid buildIos
 
 generateLauncherIcons:
-	fvm dart run flutter_launcher_icons -f launcher_and_splash/flutter_launcher_icons_2.yaml
+	fvm dart run flutter_launcher_icons -f launcher_and_splash/flutter_launcher_icons_1.yaml
 
 generateSplashScreen:
 	fvm dart run flutter_native_splash:create --path=launcher_and_splash/flutter_native_splash.yaml
