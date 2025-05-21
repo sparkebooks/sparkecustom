@@ -790,15 +790,7 @@ class FFRoute {
                   builder: (context, _) => builder(context, ffParams),
                 )
               : builder(context, ffParams);
-          final child = appStateNotifier.loading
-              ? Container(
-                  color: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/sparke_splash.png',
-                    fit: BoxFit.cover,
-                  ),
-                )
-              : PushNotificationsHandler(child: page);
+          final child = PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition
