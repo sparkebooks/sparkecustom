@@ -1,6 +1,6 @@
 flutter_native_splash:
-  color: "#1c1e2d"
-  image: launcher_and_splash/launcher_icon_without_background.png
+  color: "#0d0015"
+  image: launcher_and_splash/launcher_icon_2_small.png
 
   android_12:
-    color: "#1c1e2d"
+    color: "#0d0015"
