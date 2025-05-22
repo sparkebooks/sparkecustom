@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -67,14 +69,12 @@ void main() async {
     child: MyApp(),
   ));
 
-  Pushwoosh.initialize({"app_id": "96814-BDCC7"});
-  Pushwoosh.getInstance.onPushReceived.listen((event) {
-    print('<me> push received');
-  });
-  Pushwoosh.getInstance.onPushAccepted.listen((event) {
-    print('<me> push accepted');
-  });
-  Pushwoosh.getInstance.registerForPushNotifications();  
+  if (Platform.isIOS) {
+    Pushwoosh.initialize({"app_id": "96814-BDCC7"});
+    Pushwoosh.getInstance.onPushReceived.listen((event) {});
+    Pushwoosh.getInstance.onPushAccepted.listen((event) {});
+    Pushwoosh.getInstance.registerForPushNotifications();
+  }
 }
 
 class MyApp extends StatefulWidget {
