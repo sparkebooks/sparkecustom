@@ -172,6 +172,7 @@ dependencies:
   gma_mediation_meta: ^1.2.0
   gma_mediation_unity: ^1.4.0
   in_app_review: ^2.0.10
+  pushwoosh_flutter: ^2.3.12
 
 dependency_overrides:
   http: 1.2.2

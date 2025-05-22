@@ -329,6 +329,21 @@ PODS:
     - PurchasesHybridCommon (= 13.28.0)
   - PurchasesHybridCommon (13.28.0):
     - RevenueCat (= 5.21.0)
+  - pushwoosh_flutter (2.3.12):
+    - Flutter
+    - PushwooshXCFramework (= 6.8.4)
+  - PushwooshXCFramework (6.8.4):
+    - PushwooshXCFramework/Core (= 6.8.4)
+  - PushwooshXCFramework/Core (6.8.4):
+    - PushwooshXCFramework/PushwooshBridge
+    - PushwooshXCFramework/PushwooshCore
+    - PushwooshXCFramework/PushwooshLiveActivities
+  - PushwooshXCFramework/PushwooshBridge (6.8.4):
+    - PushwooshXCFramework/PushwooshCore
+  - PushwooshXCFramework/PushwooshCore (6.8.4)
+  - PushwooshXCFramework/PushwooshLiveActivities (6.8.4):
+    - PushwooshXCFramework/PushwooshBridge
+    - PushwooshXCFramework/PushwooshCore
   - RecaptchaInterop (100.0.0)
   - RevenueCat (5.21.0)
   - SDWebImage (5.21.0):
@@ -386,6 +401,8 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - purchases_flutter (from `.symlinks/plugins/purchases_flutter/ios`)
+  - pushwoosh_flutter (from `.symlinks/plugins/pushwoosh_flutter/ios`)
+  - PushwooshXCFramework
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/darwin`)
@@ -443,6 +460,7 @@ SPEC REPOS:
     - PromisesObjC
     - PromisesSwift
     - PurchasesHybridCommon
+    - PushwooshXCFramework
     - RecaptchaInterop
     - RevenueCat
     - SDWebImage
@@ -511,6 +529,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   purchases_flutter:
     :path: ".symlinks/plugins/purchases_flutter/ios"
+  pushwoosh_flutter:
+    :path: ".symlinks/plugins/pushwoosh_flutter/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sign_in_with_apple:
@@ -608,6 +628,8 @@ SPEC CHECKSUMS:
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   purchases_flutter: bd645b9bea1c536b34d24778de8da95cc6a65235
   PurchasesHybridCommon: f0d344e7073314988b3d98fbb9da69db85aaff38
+  pushwoosh_flutter: 0057fe65f652ba49512dedf60d386b1e26f13897
+  PushwooshXCFramework: df00324258906361dda3eba19e72c176a64d211d
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RevenueCat: 57028a8673201fdaacd1354065e8adbcba5739a4
   SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
@@ -620,6 +642,6 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 2cef49524dd1f16c5300b9cd6efd9611ce03639b
   webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
 
-PODFILE CHECKSUM: 5c459a61a3f7c7c80d33f8397a76c1a325e31029
+PODFILE CHECKSUM: ef7f5b468ba194f67677742abccae4ed61765ab7
 
 COCOAPODS: 1.16.2

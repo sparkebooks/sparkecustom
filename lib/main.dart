@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smartlook/flutter_smartlook.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:provider/provider.dart';
+import 'package:pushwoosh_flutter/pushwoosh_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sparke_kaleo/branch_handler.dart';
 import 'package:sparke_kaleo/smartlook.dart';
@@ -65,6 +66,15 @@ void main() async {
     create: (context) => appState,
     child: MyApp(),
   ));
+
+  Pushwoosh.initialize({"app_id": "96814-BDCC7"});
+  Pushwoosh.getInstance.onPushReceived.listen((event) {
+    print('<me> push received');
+  });
+  Pushwoosh.getInstance.onPushAccepted.listen((event) {
+    print('<me> push accepted');
+  });
+  Pushwoosh.getInstance.registerForPushNotifications();  
 }
 
 class MyApp extends StatefulWidget {

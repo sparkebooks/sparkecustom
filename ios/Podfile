@@ -62,3 +62,8 @@ target 'ImageNotification' do
   pod 'Firebase/Messaging'
   pod 'GoogleUtilities'
 end
+
+target 'NotificationServiceExtension' do
+  use_frameworks! :linkage => :static
+  pod 'PushwooshXCFramework'
+end
