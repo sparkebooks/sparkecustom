@@ -609,17 +609,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                             if ((updatedDesignCoinsRow
                                                         ?.balance ??
                                                     0) >=
-                                                functions.getTotalDiscount(
-                                                    valueOrDefault<int>(
-                                                      _model.bulkChapterNumber,
-                                                      10,
-                                                    ),
-                                                    valueOrDefault<double>(
-                                                      widget.bookID
-                                                          ?.costPerChapter
-                                                          ?.toDouble(),
-                                                      5.0,
-                                                    ))!) {
+                                                nCoins) {
                                               // chapters_redeemable
                                               _model.areMultipleChaptersRedeemed =
                                                   await actions.redeemChapters(
@@ -629,10 +619,7 @@ class _ModalUnlockChapterWidgetState extends State<ModalUnlockChapterWidget> {
                                                   _model.bulkChapterNumber,
                                                   10,
                                                 ),
-                                                valueOrDefault<int>(
-                                                  widget.bookID?.costPerChapter,
-                                                  5,
-                                                ),
+                                                (nCoins / nChapters).round(),
                                                 widget.userBook!.id,
                                               );
                                               if (_model
