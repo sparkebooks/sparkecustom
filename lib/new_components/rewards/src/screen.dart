@@ -44,11 +44,14 @@ class _Theme extends StatelessWidget {
     final data = Theme.of(context);
     return Theme(
       data: data.copyWith(
-        textTheme: GoogleFonts.ptSerifTextTheme(),
+        textTheme: GoogleFonts.ptSerifTextTheme().apply(
+          bodyColor: FlutterFlowTheme.of(context).primaryText,
+          displayColor: FlutterFlowTheme.of(context).primaryText,
+        ),
         appBarTheme: AppBarTheme(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.black,
+          foregroundColor: FlutterFlowTheme.of(context).primaryText,
           centerTitle: true,
         ),
       ),
@@ -159,8 +162,9 @@ class _Card extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
+        color: FlutterFlowTheme.of(context).accent1,
         border: Border.all(
-          color: FlutterFlowTheme.of(context).alternate,
+          color: FlutterFlowTheme.of(context).primary,
           width: 2.0,
         ),
       ),
@@ -260,6 +264,9 @@ class _CheckInStreakState extends State<_CheckInStreak> {
     return _Card(
       child: ListTile(
         contentPadding: _tilePadding,
+        subtitleTextStyle: DefaultTextStyle.of(context).style.copyWith(
+              color: FlutterFlowTheme.of(context).secondaryText,
+            ),
         title: AutoSizeText(
           'Check-In Streak: ${data.nDays} ${data.nDays == 1 ? 'day' : 'days'}',
           maxLines: 1,
