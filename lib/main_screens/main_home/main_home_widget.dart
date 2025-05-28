@@ -1094,19 +1094,19 @@ class _MainHomeWidgetState extends State<MainHomeWidget> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: wrapWithModel(
-                        model: _model.sectionTropeJustOutModel,
-                        updateCallback: () => safeSetState(() {}),
-                        child: SectionTropeJustOutWidget(
-                          tropeTitle: 'Just Out (24 hrs)',
-                        ),
-                      ),
-                    ),
+                    // Container(
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //     color: FlutterFlowTheme.of(context).secondaryBackground,
+                    //   ),
+                    //   child: wrapWithModel(
+                    //     model: _model.sectionTropeJustOutModel,
+                    //     updateCallback: () => safeSetState(() {}),
+                    //     child: SectionTropeJustOutWidget(
+                    //       tropeTitle: 'Just Out (24 hrs)',
+                    //     ),
+                    //   ),
+                    // ),
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(),
